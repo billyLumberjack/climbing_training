@@ -48,11 +48,16 @@ Dal Meso 2 ricaviamo che il collo di bottiglia non è max strength (gli AMRAP ra
 - W4 → Lun max hang fresh, volume ridotto vs picco; valutare spostamento a Mar se servono più giorni di separazione dal Sab.
 
 **PHYSICAL TRAINING**
-- Sempre sui giorni smart-working (Lun/Ven preferiti).
-- W1 → Ven, mantenimento.
-- W2 → Ven, mantenimento.
-- W3 e W4 → Mar, per separare di più dal weekend ed evitare residuo come a fine Meso 2.
-- Mantenimento push/core. **Niente PR trazioni** — è il prossimo meso, non questo.
+- **Sessione principale** (Session B style, push + core + mobilità):
+  - W1 → Ven, mantenimento.
+  - W2 → Ven, mantenimento.
+  - W3 e W4 → Mar, per separare di più dal weekend ed evitare residuo come a fine Meso 2.
+  - Mantenimento push/core. **Niente PR trazioni** — è il prossimo meso, non questo.
+- **Mini blocco antagonista + mobilità** (15-20', RPE 5, piggyback sulla sessione hangboard del Lun, post-HB) — aggiunto post-audit KB per coprire la raccomandazione Hörst di antagonist 2×/sett:
+  - W2, W3, W4 → Lun (W1 skip, è transizione).
+  - Contenuto: shoulder press DB leggero (2×20), DB external rotation (2×15/side), bent-over arm raise (2×12), 90/90 Hip IR + Seated Bear per mobilità anca.
+  - Razionale: prevenire il pattern infortuni più comune nei climbers (impingement spalla + tendinosi gomito, ch.11) senza aggiungere una sessione full che ripeterebbe il pattern Session A saltata in Meso 2.
+- **Wrist curl + forearm pronator** come warm-up/cool-down a ogni sessione climbing (Hörst ch.6: "before and after every climbing workout") — gestito nelle NOTES del climbing CSV, non sessione separata.
 
 **CLIMBING**
 - W1 → Gio sera indoor unico, tecnico/coordinativo, RPE 5–6, zero pump (rientro dolce).
@@ -145,15 +150,34 @@ Tattiche specifiche dalla KB (Hörst ch.3, ch.4) da iniettare nei CSV dei sotto-
 
 Hörst ch.9 + ch.10: 8–9 h di sonno nelle 24–48 h dopo HIT (W2 Lun HB, W3 Sab+Dom, W4 Sab). Ricarica carboidrati post-PE Dom outdoor. Banale ma codificato.
 
+### Round 2 — PT-specific findings (post-secondo audit)
+
+Query mirate al potenziamento (precedentemente skippate) hanno aggiunto raccomandazioni concrete:
+
+**Antagonist training** (Hörst ch.6 + ch.11):
+- "Outside of the fingers, the most common injuries among climbers are elbow tendinosis and shoulder impingement and subluxation — largely attributable to this imbalance"
+- Frequenza standard: **20 min × 2×/sett**, carichi LEGGERI, 15–30 reps. Shoulder press (max 40% BW), bench (max 50% BW), DB internal/external rotation per rotator cuff.
+- Esercizi chiave per warm-up/cool-down a OGNI sessione climbing: **reverse wrist curls + forearm pronators** (protezione gomito specifica).
+
+**Mobilità** (Hörst ch.6 + doc 12.md/17.md):
+- Fino a **31% di differenza** tra intermediate ed elite nel foot-race test specifico → la mobilità è discriminante reale di grado.
+- **Active mobility > passive stretching**: approccio FRC con PAILS/RAILS.
+- Target: flessione + abduzione anca, dorsiflessione caviglia (drill: 90/90 Hip IR, Seated Bear, Rockback).
+
+**Decisione applicata**: il mio PT 1×/sett era sotto la raccomandazione 2×/sett. Aggiunto **mini-blocco antagonista + mobilità Lun (post-HB)** per W2/W3/W4, 15–20', RPE 4–5, esercizi specifici da Hörst ch.6/ch.11/doc 12.md. W1 skip (transizione). Non si aggiunge una sessione full per non ripetere il pattern Session A saltata in Meso 2 (piggyback su giorno già attivo).
+
 ### Riferimenti KB
 
 - `chapter_4_training_technique_and_skill.pdf` — tecnica, fluidità, 5 attributi del movimento economico
 - `chapter_5_strength_training.pdf` — periodizzazione, recovery rules
+- `chapter_6_general_conditioning.pdf` — antagonist push exercises, shoulder press, mobilità
 - `chapter_7_climbing_specific_exercises.pdf` — Fingerboard Repeaters protocol
 - `chapter_8_designing_training_program.pdf` — microcycle, mesocycle, workout hierarchy, 4-3-2-1 cycle
+- `chapter_11_injuries.pdf` — pattern infortuni climber, rotator cuff rehab, wrist curls
 - `chapter_3_mental_training.pdf` — visualization, pre-climb ritual, chunking
 - `chapter_10_recovery.pdf` — supercompensation, sleep
 - `1.md` — Resistenza breve durata, TUT 30–120 s, gerarchia esercizi
 - `7.md` — Resistenza lunga durata, TUT 150–200 s
+- `12.md` / `17.md` — Mobilità arrampicata: anca, caviglia, FRC
 - `15.md` — Scarico: come e quando
 - `10.md` — Gestione fatica, "less is more"
