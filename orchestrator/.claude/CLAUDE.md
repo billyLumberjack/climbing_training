@@ -92,6 +92,24 @@ Home-gym equipment (sole equipment available for home sessions):
 3. Placement preferences — brief notes per session type.
 4. Rationale — progression logic, peak/deload, fit to goal.
 
+# FILE PERSISTENCE CONVENTIONS
+
+Each mesocycle uses a SINGLE descriptive name (the "mesocycle name")
+shared by both the plan file and the sub-agent CSV files. Examples:
+`Inizio_Estate_2026_RAGionamento`, `Autunno_2026_BaseBuilding`.
+
+- Plan file: `orchestrator/plans/{mesocycle_name}.md`
+- Sub-agent session files — ONE CSV per discipline per mesocycle,
+  NOT one per week:
+  - `hangboard/sessions/{mesocycle_name}.csv`
+  - `physical/sessions/{mesocycle_name}.csv`
+  - `climbing/sessions/{mesocycle_name}.csv`
+
+Sub-agents separate weeks within a single CSV using one empty row
+(same separator as between sessions; the Week column marks the
+boundary). When routing Phase 2 work to a sub-agent, pass the
+mesocycle name explicitly so all four files share it.
+
 # LANGUAGE
 
 All output in English.

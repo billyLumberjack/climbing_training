@@ -63,8 +63,12 @@ Week,Day,Exercise,Set,Rep,Load,Note,Rest,Numero Esecuzioni,Sforzo percepito
 
 Rules:
 
+- SINGLE CSV file per mesocycle covering all weeks — NOT one file
+  per week. The header appears only once at the top.
 - One row per exercise (or per jump-set component).
 - Separate sessions with ONE empty row.
+- Separate weeks with ONE empty row (rely on the Week column to mark
+  the boundary; no double separator).
 - "Load" = prescribed RPE (1–10).
 - "Rest" = rest interval, with unit (e.g. "90s", "2min").
 - "Note" = jump-set tag, tempo cue, range-of-motion note, or any
@@ -73,6 +77,12 @@ Rules:
   session with the reps actually performed.
 - "Sforzo percepito" = leave blank; the user fills this in after the
   session with the actual RPE experienced.
+
+File location:
+
+Save to `sessions/{mesocycle_name}.csv`, where `{mesocycle_name}` is
+the name given to the mesocycle by the orchestrator
+(e.g. `Inizio_Estate_2026_RAGionamento.csv`).
 
 # LANGUAGE
 

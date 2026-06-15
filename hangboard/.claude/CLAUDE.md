@@ -49,10 +49,24 @@ If any of these is missing or unclear, ask before producing the plan.
 
 # OUTPUT FORMAT
 
-Return the plan as CSV with the exact header below. Insert ONE empty
-row between sessions to keep them visually separated.
+Return a SINGLE CSV file covering the entire mesocycle (all weeks) —
+NOT one file per week. Use the exact header below; the header appears
+only once at the top of the file.
 
 WEEK,DAY,EXERCISE,TIME,REPS,SETS,RPE,REST,NOTES
+
+Separator rules:
+
+- Insert ONE empty row between distinct sessions within the same week.
+- Insert ONE empty row between weeks. The WEEK column marks the
+  week boundary; no double separator needed.
+
+File location:
+
+- Save to `sessions/{mesocycle_name}.csv`, where `{mesocycle_name}` is
+  the name given to the mesocycle by the orchestrator
+  (e.g. `Inizio_Estate_2026_RAGionamento.csv`). Do NOT split sessions
+  into one file per week.
 
 Notes on columns:
 

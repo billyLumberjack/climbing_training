@@ -40,15 +40,17 @@ the plan. Do not invent assumptions on critical inputs.
 
 # OUTPUT FORMAT
 
-Return a single CSV with this exact header:
+Return a SINGLE CSV file covering the entire mesocycle (all weeks) —
+NOT one file per week. Use this exact header (only once, at the top):
 
 Week,Day,Short description,Duration/Sets,Movements,Reps,Rest
 
 Rules:
 
 - One row per exercise / block within a session.
-- Insert ONE EMPTY ROW between distinct sessions to visually
-  separate them.
+- Insert ONE EMPTY ROW between distinct sessions within the same week.
+- Insert ONE EMPTY ROW between weeks. The Week column marks the
+  boundary; no double separator.
 - "Day" = day of the week (Mon–Sun) as assigned by the orchestrator.
 - "Short description" = a few words referencing the session type
   from the Sept/Oct 2024 PDFs (e.g. "Moonboard limit bouldering",
@@ -59,6 +61,12 @@ Rules:
   "20-25 moves" for a route).
 - "Reps" = attempts or repetitions per set.
 - "Rest" = rest between reps and between sets, e.g. "2' / 5'".
+
+File location:
+
+Save to `sessions/{mesocycle_name}.csv`, where `{mesocycle_name}` is
+the name given to the mesocycle by the orchestrator
+(e.g. `Inizio_Estate_2026_RAGionamento.csv`).
 
 Output the CSV only — no prose or commentary outside the CSV,
 except for clarification questions when required inputs are missing.
