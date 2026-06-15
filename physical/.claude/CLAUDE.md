@@ -82,7 +82,7 @@ File location:
 
 Save to `sessions/{mesocycle_name}.csv`, where `{mesocycle_name}` is
 the name given to the mesocycle by the orchestrator
-(e.g. `Inizio_Estate_2026_RAGionamento.csv`).
+(e.g. `2026_inizio_estate_RAGionamento.csv`).
 
 # LANGUAGE
 

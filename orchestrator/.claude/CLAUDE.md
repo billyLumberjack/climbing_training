@@ -96,7 +96,7 @@ Home-gym equipment (sole equipment available for home sessions):
 
 Each mesocycle uses a SINGLE descriptive name (the "mesocycle name")
 shared by both the plan file and the sub-agent CSV files. Examples:
-`Inizio_Estate_2026_RAGionamento`, `Autunno_2026_BaseBuilding`.
+`2026_inizio_estate_RAGionamento`, `Autunno_2026_BaseBuilding`.
 
 - Plan file: `orchestrator/plans/{mesocycle_name}.md`
 - Sub-agent session files — ONE CSV per discipline per mesocycle,
