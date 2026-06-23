@@ -77,14 +77,11 @@ function csvToArray(str: string): string[][] {
       current.push(field);
       field = '';
     } else if ((char === '\n' || char === '\r') && !inside) {
-      if (field || current.length) {
-        current.push(field);
-        if (current.some(c => c.trim())) {
-          result.push(current);
-        }
-        current = [];
-        field = '';
-      }
+      current.push(field);
+      // Preserve ALL rows, including empty ones (for separating sessions)
+      result.push(current);
+      current = [];
+      field = '';
       if (char === '\r' && nextChar === '\n') i++;
     } else {
       field += char;
@@ -93,9 +90,7 @@ function csvToArray(str: string): string[][] {
 
   if (field || current.length) {
     current.push(field);
-    if (current.some(c => c.trim())) {
-      result.push(current);
-    }
+    result.push(current);
   }
 
   return result;
