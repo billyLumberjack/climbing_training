@@ -138,19 +138,34 @@ async function pullFromSheets() {
         continue;
       }
 
+      // The Sheets API trims trailing empty cells per row, so rows can be shorter
+      // than the actual sheet width. Compute the true sheet column count from the
+      // widest row, then pad all rows to that width before appending logging cols.
+      const sheetColCount = values.reduce((max: number, row: any[]) => Math.max(max, row.length), 0);
+
       // Merge with existing logging columns from local CSV (preserve manual entries)
       if (fs.existsSync(config.csvPath)) {
         const existingCsv = fs.readFileSync(config.csvPath, 'utf-8');
         const existingRows = csvToArray(existingCsv);
 
-        // For each row from Sheets, append the last 2 columns from existing CSV if available
         values = values.map((row, idx) => {
+          // Pad to sheet width so logging cols always land at the same column index
+          const paddedRow = [...row];
+          while (paddedRow.length < sheetColCount) paddedRow.push('');
+
           if (idx < existingRows.length) {
             const existingRow = existingRows[idx];
             const loggingCols = existingRow.slice(-2);
-            return [...row, ...loggingCols];
+            return [...paddedRow, ...loggingCols];
           }
-          return row;
+          return [...paddedRow, '', ''];
+        });
+      } else {
+        // No local CSV yet — pad rows and add empty logging cols for consistency
+        values = values.map(row => {
+          const paddedRow = [...row];
+          while (paddedRow.length < sheetColCount) paddedRow.push('');
+          return [...paddedRow, '', ''];
         });
       }
 
