@@ -138,10 +138,10 @@ async function pullFromSheets() {
         continue;
       }
 
-      // The Sheets API trims trailing empty cells per row, so rows can be shorter
-      // than the actual sheet width. Compute the true sheet column count from the
-      // widest row, then pad all rows to that width before appending logging cols.
-      const sheetColCount = values.reduce((max: number, row: any[]) => Math.max(max, row.length), 0);
+      // Use the header row as the authoritative sheet column count: data rows may be
+      // shorter because the Sheets API trims trailing empty cells, but the header row
+      // always has every column named so it gives the true sheet width.
+      const sheetColCount = values[0]?.length ?? 0;
 
       // Merge with existing logging columns from local CSV (preserve manual entries)
       if (fs.existsSync(config.csvPath)) {
