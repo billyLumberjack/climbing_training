@@ -14,6 +14,12 @@ interface SheetConfig {
   csvPath: string;
   sheetName: string;
   headers: string[];
+  // When true, the last 2 logging columns live inside the sheet itself.
+  // Pull writes them straight to the CSV with no extra local slots.
+  // Push uploads all columns (no stripping).
+  // When false, logging columns are local-only: pull appends 2 empty slots
+  // and preserves them across syncs; push strips them before uploading.
+  loggingInSheet: boolean;
 }
 
 const sheetConfigs: SheetConfig[] = [
@@ -22,21 +28,24 @@ const sheetConfigs: SheetConfig[] = [
     type: 'physical',
     csvPath: './physical/current/2026_inizio_estate_RAGionamento.csv',
     sheetName: 'Physical',
-    headers: ['Week', 'Day', 'Exercise', 'Set', 'Rep', 'Load', 'Note', 'Rest', 'Numero Esecuzioni', 'Sforzo percepito']
+    headers: ['Week', 'Day', 'Exercise', 'Set', 'Rep', 'Load', 'Note', 'Rest', 'Numero Esecuzioni', 'Sforzo percepito'],
+    loggingInSheet: false
   },
   {
     name: 'Hangboard',
     type: 'hangboard',
     csvPath: './hangboard/current/2026_inizio_estate_RAGionamento.csv',
     sheetName: 'Hangboard',
-    headers: ['WEEK', 'DAY', 'EXERCISE', 'TIME', 'REPS', 'SETS', 'RPE', 'REST', 'NOTES']
+    headers: ['WEEK', 'DAY', 'EXERCISE', 'TIME', 'REPS', 'SETS', 'RPE', 'REPS LOG', 'RPE LOG'],
+    loggingInSheet: true
   },
   {
     name: 'Climbing',
     type: 'climbing',
     csvPath: './climbing/current/2026_inizio_estate_RAGionamento.csv',
     sheetName: 'Climbing',
-    headers: ['Week', 'Day', 'Short description', 'Duration/Sets', 'Movements', 'Reps', 'Rest']
+    headers: ['Week', 'Day', 'Short description', 'Duration/Sets', 'Movements', 'Reps', 'Rest'],
+    loggingInSheet: false
   }
 ];
 
@@ -138,38 +147,49 @@ async function pullFromSheets() {
         continue;
       }
 
-      // Use the widest row across the entire response as sheetColCount: the header row
-      // may be narrower than data rows when some column headers are blank in the sheet.
+      // Use the widest row across the entire response — the header row may be narrower
+      // than data rows when some column headers are blank in the sheet.
       const sheetColCount = values.reduce((max: number, row: any[]) => Math.max(max, row.length), 0);
-      const expectedCsvWidth = sheetColCount + 2;
 
-      // Merge with existing logging columns from local CSV (preserve manual entries)
-      if (fs.existsSync(config.csvPath)) {
-        const existingCsv = fs.readFileSync(config.csvPath, 'utf-8');
-        const existingRows = csvToArray(existingCsv);
-
-        values = values.map((row, idx) => {
-          const paddedRow = [...row];
-          while (paddedRow.length < sheetColCount) paddedRow.push('');
-
-          if (idx < existingRows.length) {
-            const existingRow = existingRows[idx];
-            // Only preserve logging cols when the existing CSV has the correct width;
-            // otherwise the old CSV structure is wrong and we start fresh with empty slots.
-            if (existingRow.length >= expectedCsvWidth) {
-              const loggingCols = existingRow.slice(sheetColCount, sheetColCount + 2);
-              return [...paddedRow, ...loggingCols];
-            }
-          }
-          return [...paddedRow, '', ''];
-        });
-      } else {
-        // No local CSV yet — pad rows and add empty logging cols for consistency
+      if (config.loggingInSheet) {
+        // Logging columns live inside the sheet already — write exactly what the sheet
+        // returns, padded to uniform width. No extra local slots needed.
         values = values.map(row => {
           const paddedRow = [...row];
           while (paddedRow.length < sheetColCount) paddedRow.push('');
-          return [...paddedRow, '', ''];
+          return paddedRow;
         });
+      } else {
+        // Logging columns are local-only. Append 2 slots after the sheet data and
+        // preserve any existing log entries from the current CSV.
+        const expectedCsvWidth = sheetColCount + 2;
+
+        if (fs.existsSync(config.csvPath)) {
+          const existingCsv = fs.readFileSync(config.csvPath, 'utf-8');
+          const existingRows = csvToArray(existingCsv);
+
+          values = values.map((row, idx) => {
+            const paddedRow = [...row];
+            while (paddedRow.length < sheetColCount) paddedRow.push('');
+
+            if (idx < existingRows.length) {
+              const existingRow = existingRows[idx];
+              // Only restore logging cols if the old CSV had the correct width;
+              // otherwise the structure was wrong and we start with empty slots.
+              if (existingRow.length >= expectedCsvWidth) {
+                const loggingCols = existingRow.slice(sheetColCount, sheetColCount + 2);
+                return [...paddedRow, ...loggingCols];
+              }
+            }
+            return [...paddedRow, '', ''];
+          });
+        } else {
+          values = values.map(row => {
+            const paddedRow = [...row];
+            while (paddedRow.length < sheetColCount) paddedRow.push('');
+            return [...paddedRow, '', ''];
+          });
+        }
       }
 
       // Write to CSV
@@ -273,8 +293,9 @@ async function pushToSheets() {
         continue;
       }
 
-      // Remove last 2 columns (logging columns: Numero Esecuzioni, Sforzo percepito)
-      const rowsWithoutLogging = rows.map(row => row.slice(0, -2));
+      // When logging is local-only, strip the 2 trailing local cols before uploading.
+      // When logging lives in the sheet, upload all columns as-is.
+      const rowsWithoutLogging = config.loggingInSheet ? rows : rows.map(row => row.slice(0, -2));
 
       // Clear existing data
       await sheets.spreadsheets.values.clear({
