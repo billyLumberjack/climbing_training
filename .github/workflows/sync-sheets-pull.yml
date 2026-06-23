@@ -35,13 +35,7 @@ jobs:
         env:
           GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
           GOOGLE_SHEETS_CREDS_PATH: /tmp/creds.json
-          GIT_AUTHOR_NAME: "Climbing Training Sync"
-          GIT_AUTHOR_EMAIL: "sync@training.local"
-          GIT_COMMITTER_NAME: "Climbing Training Sync"
-          GIT_COMMITTER_EMAIL: "sync@training.local"
         run: |
-          git config --global user.name "Climbing Training Sync"
-          git config --global user.email "sync@training.local"
           echo "📥 Fetching logged data from Sheets..."
           npx tsx scripts/sync-sheets-to-git.ts --pull
           echo "✅ Fetch complete - changes committed (if any)"

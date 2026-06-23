@@ -178,6 +178,15 @@ async function pullFromSheets() {
   // Git commit if changes made
   if (changeCount > 0) {
     try {
+      // Ensure git identity is set (handles GitHub Actions environment)
+      try {
+        execSync('git config user.name', { cwd: process.cwd(), stdio: 'pipe' });
+      } catch {
+        console.log('🔧 Setting git user identity...');
+        execSync('git config user.name "Climbing Training Sync"', { cwd: process.cwd(), stdio: 'inherit' });
+        execSync('git config user.email "sync@training.local"', { cwd: process.cwd(), stdio: 'inherit' });
+      }
+
       // Stage all CSV changes
       console.log('📝 Staging CSV files...');
       execSync('git add physical/current/*.csv hangboard/current/*.csv climbing/current/*.csv', {
