@@ -154,8 +154,13 @@ async function pullFromSheets() {
       fs.writeFileSync(config.csvPath, csvContent);
       console.log(`    ✅ Wrote ${values.length} rows to ${config.csvPath}`);
       changeCount++;
-    } catch (error) {
-      console.error(`    ❌ Error syncing ${config.name}:`, error);
+    } catch (error: any) {
+      if (error?.message?.includes('Unable to parse range')) {
+        console.log(`    ⚠️  Sheet "${config.sheetName}" not found - create it in Google Sheets first`);
+        console.log(`       Instructions: Open Google Sheets → Right-click sheet tab → Rename to "${config.sheetName}"`);
+      } else {
+        console.error(`    ❌ Error syncing ${config.name}:`, error instanceof Error ? error.message : error);
+      }
     }
   }
 
