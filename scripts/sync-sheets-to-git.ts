@@ -137,10 +137,26 @@ async function pullFromSheets() {
         range: `${config.sheetName}!A:Z`,
       });
 
-      const values = response.data.values || [];
+      let values = response.data.values || [];
       if (values.length === 0) {
         console.log(`    ⚠️  No data found in sheet`);
         continue;
+      }
+
+      // Merge with existing logging columns from local CSV (preserve manual entries)
+      if (fs.existsSync(config.csvPath)) {
+        const existingCsv = fs.readFileSync(config.csvPath, 'utf-8');
+        const existingRows = csvToArray(existingCsv);
+
+        // For each row from Sheets, append the last 2 columns from existing CSV if available
+        values = values.map((row, idx) => {
+          if (idx < existingRows.length) {
+            const existingRow = existingRows[idx];
+            const loggingCols = existingRow.slice(-2);
+            return [...row, ...loggingCols];
+          }
+          return row;
+        });
       }
 
       // Write to CSV
@@ -221,23 +237,26 @@ async function pushToSheets() {
         continue;
       }
 
+      // Remove last 2 columns (logging columns: Numero Esecuzioni, Sforzo percepito)
+      const rowsWithoutLogging = rows.map(row => row.slice(0, -2));
+
       // Clear existing data
       await sheets.spreadsheets.values.clear({
         spreadsheetId: SHEETS_ID,
         range: `${config.sheetName}!A:Z`,
       });
 
-      // Write new data
+      // Write new data (without logging columns)
       await sheets.spreadsheets.values.update({
         spreadsheetId: SHEETS_ID,
         range: `${config.sheetName}!A1`,
         valueInputOption: 'RAW',
         requestBody: {
-          values: rows,
+          values: rowsWithoutLogging,
         },
       });
 
-      console.log(`    ✅ Uploaded ${rows.length} rows to ${config.sheetName}`);
+      console.log(`    ✅ Uploaded ${rowsWithoutLogging.length} rows (${rowsWithoutLogging[0]?.length || 0} cols) to ${config.sheetName}`);
       changeCount++;
     } catch (error) {
       console.error(`    ❌ Error syncing ${config.name}:`, error);
