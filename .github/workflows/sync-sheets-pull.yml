@@ -31,6 +31,11 @@ jobs:
           echo "$CREDS_JSON" > /tmp/creds.json
           echo "✅ Credentials written to /tmp/creds.json"
 
+      - name: Configure git identity
+        run: |
+          git config user.name "Climbing Training Sync"
+          git config user.email "sync@training.local"
+
       - name: Pull session logs from Google Sheets
         env:
           GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
@@ -42,13 +47,15 @@ jobs:
 
       - name: Verify and push committed changes
         run: |
-          # Fetch latest to avoid non-fast-forward rejections
+          # Fetch latest remote state
           git fetch origin main
 
           # Check if there are unpushed commits
           if git log --oneline origin/main..HEAD | grep -q .; then
             echo "📤 Found commits to push:"
             git log --oneline origin/main..HEAD
+            # Rebase onto origin/main to guarantee a fast-forward push
+            git rebase origin/main
             git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
             echo "✅ Changes pushed to main"
           else

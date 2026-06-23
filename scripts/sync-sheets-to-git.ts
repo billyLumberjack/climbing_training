@@ -178,13 +178,14 @@ async function pullFromSheets() {
   // Git commit if changes made
   if (changeCount > 0) {
     try {
-      // Ensure git identity is set (handles GitHub Actions environment)
+      // Ensure git identity is set — check output, not just exit code (empty string still exits 0)
+      let gitName = '';
       try {
-        execSync('git config user.name', { cwd: process.cwd(), stdio: 'pipe' });
-      } catch {
-        console.log('🔧 Setting git user identity...');
-        execSync('git config user.name "Climbing Training Sync"', { cwd: process.cwd(), stdio: 'inherit' });
-        execSync('git config user.email "sync@training.local"', { cwd: process.cwd(), stdio: 'inherit' });
+        gitName = execSync('git config user.name', { cwd: process.cwd(), stdio: 'pipe' }).toString().trim();
+      } catch { /* not set */ }
+      if (!gitName) {
+        execSync('git config user.name "Climbing Training Sync"', { cwd: process.cwd(), stdio: 'pipe' });
+        execSync('git config user.email "sync@training.local"', { cwd: process.cwd(), stdio: 'pipe' });
       }
 
       // Stage all CSV changes
