@@ -24,11 +24,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Configure git
-        run: |
-          git config user.name "Climbing Training Sync"
-          git config user.email "sync@training.local"
-
       - name: Write credentials
         env:
           CREDS_JSON: ${{ secrets.GOOGLE_SHEETS_CREDS }}
@@ -40,13 +35,22 @@ jobs:
         env:
           GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
           GOOGLE_SHEETS_CREDS_PATH: /tmp/creds.json
+          GIT_AUTHOR_NAME: "Climbing Training Sync"
+          GIT_AUTHOR_EMAIL: "sync@training.local"
+          GIT_COMMITTER_NAME: "Climbing Training Sync"
+          GIT_COMMITTER_EMAIL: "sync@training.local"
         run: |
+          git config --global user.name "Climbing Training Sync"
+          git config --global user.email "sync@training.local"
           echo "📥 Fetching logged data from Sheets..."
           npx tsx scripts/sync-sheets-to-git.ts --pull
           echo "✅ Fetch complete - changes committed (if any)"
 
       - name: Verify and push committed changes
         run: |
+          # Fetch latest to avoid non-fast-forward rejections
+          git fetch origin main
+
           # Check if there are unpushed commits
           if git log --oneline origin/main..HEAD | grep -q .; then
             echo "📤 Found commits to push:"
