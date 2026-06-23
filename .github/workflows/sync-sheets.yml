@@ -36,10 +36,12 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "push" ]]; then
             echo "mode=--push" >> $GITHUB_OUTPUT
-            echo "direction=push (agent update)" >> $GITHUB_OUTPUT
+            echo "direction=push (auto: agent updated CSV)" >> $GITHUB_OUTPUT
           else
-            echo "mode=--pull" >> $GITHUB_OUTPUT
-            echo "direction=pull (manual or scheduled)" >> $GITHUB_OUTPUT
+            # Manual trigger: push to initialize/sync Sheets, then user logs in Sheets
+            # Later pulls will preserve the logging columns
+            echo "mode=--push" >> $GITHUB_OUTPUT
+            echo "direction=push (manual: sync CSV plan to Sheets)" >> $GITHUB_OUTPUT
           fi
 
       - name: Write credentials
