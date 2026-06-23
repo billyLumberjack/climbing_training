@@ -163,7 +163,7 @@ async function pullFromSheets() {
       }
 
       fs.writeFileSync(config.csvPath, csvContent);
-      console.log(`    ✅ Wrote ${values.length} rows to ${config.csvPath}`);
+      console.log(`    ✅ Updated ${config.csvPath} (${values.length} rows)`);
       changeCount++;
     } catch (error: any) {
       if (error?.message?.includes('Unable to parse range')) {
@@ -178,11 +178,24 @@ async function pullFromSheets() {
   // Git commit if changes made
   if (changeCount > 0) {
     try {
+      // Stage all CSV changes
+      console.log('📝 Staging CSV files...');
       execSync('git add physical/current/*.csv hangboard/current/*.csv climbing/current/*.csv', {
         cwd: process.cwd(),
         stdio: 'inherit',
       });
 
+      // Check if there are actually staged changes
+      try {
+        execSync('git diff --cached --quiet', { cwd: process.cwd() });
+        // No changes staged
+        console.log('ℹ️  No staged changes (files identical)');
+        process.exit(0);
+      } catch {
+        // Changes are staged, proceed to commit
+      }
+
+      console.log('💾 Committing changes...');
       execSync(
         'git commit -m "Sync session logs from Google Sheets\n\nCo-Authored-By: Climbing Training Sync <sync@training.local>"',
         {
@@ -191,14 +204,14 @@ async function pullFromSheets() {
         }
       );
 
-      console.log(`\n✅ Committed ${changeCount} updated CSV file(s)`);
+      console.log(`✅ Successfully committed ${changeCount} updated CSV file(s)`);
       process.exit(0);
-    } catch (error) {
-      console.log('ℹ️  No changes to commit (git error or no diff)');
-      process.exit(0);
+    } catch (error: any) {
+      console.error('❌ Git error:', error instanceof Error ? error.message : error);
+      process.exit(1);
     }
   } else {
-    console.log('\n✅ No changes needed');
+    console.log('✅ No changes from Sheets');
     process.exit(0);
   }
 }
