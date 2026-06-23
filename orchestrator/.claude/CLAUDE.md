@@ -101,9 +101,12 @@ shared by both the plan file and the sub-agent CSV files. Examples:
 - Plan file: `orchestrator/plans/{mesocycle_name}.md`
 - Sub-agent session files — ONE CSV per discipline per mesocycle,
   NOT one per week:
-  - `hangboard/sessions/{mesocycle_name}.csv`
-  - `physical/sessions/{mesocycle_name}.csv`
-  - `climbing/sessions/{mesocycle_name}.csv`
+  - `hangboard/current/{mesocycle_name}.csv` (current mesocycle)
+  - `physical/current/{mesocycle_name}.csv` (current mesocycle)
+  - `climbing/current/{mesocycle_name}.csv` (current mesocycle)
+  - `hangboard/sessions/` (archived past mesocycles)
+  - `physical/sessions/` (archived past mesocycles)
+  - `climbing/sessions/` (archived past mesocycles)
 
 Sub-agents separate weeks within a single CSV using one empty row
 (same separator as between sessions; the Week column marks the

@@ -16,17 +16,20 @@ climbing_training/
 │
 ├── hangboard/                     ← PHASE 2: Finger-strength sessions
 │   ├── .claude/CLAUDE.md          ← Hangboard agent role
-│   ├── sessions/                  ← Output: hangboard CSV files
+│   ├── current/                   ← Current mesocycle CSVs (active training)
+│   ├── sessions/                  ← Historical mesocycle CSVs (past training)
 │   └── progressions.md            ← Data: max hangs, rep records
 │
 ├── physical/                      ← PHASE 2: S&C sessions
 │   ├── .claude/CLAUDE.md          ← Physical training agent role
-│   ├── sessions/                  ← Output: S&C CSV files
+│   ├── current/                   ← Current mesocycle CSVs (active training)
+│   ├── sessions/                  ← Historical mesocycle CSVs (past training)
 │   └── progressions.md            ← Data: lift PRs, progression notes
 │
 └── climbing/                      ← PHASE 2: Climbing sessions
     ├── .claude/CLAUDE.md          ← Climbing agent role
-    ├── sessions/                  ← Output: climbing CSV files
+    ├── current/                   ← Current mesocycle CSVs (active training)
+    ├── sessions/                  ← Historical mesocycle CSVs (past training)
     └── progressions.md            ← Data: sends, projects, technique notes
 ```
 
@@ -60,15 +63,15 @@ For each week of the mesocycle, you invoke the three specialist agents:
 
 #### 1. Hangboard Agent
 
-**When:** You need hangboard sessions for a specific week.
+**When:** You need hangboard sessions for the current mesocycle.
 
 **How:**
 1. Open Claude Code from the `hangboard/` folder.
 2. Provide:
-   - Reference to the mesocycle plan (e.g., "Week 3 of mesocycle-1")
+   - Reference to the current mesocycle plan (e.g., "RAGionamento - Week 3")
    - The week number, position in progression (accumulation/intensification/peak/deload), and assigned hangboard session count
    - Any finger-specific limitations
-3. Agent outputs a CSV to `hangboard/sessions/week-{N}.csv`
+3. Agent outputs a CSV to `hangboard/current/{mesocycle-name}.csv`
 
 **Update `progressions.md`** after each session with:
 - Max hang baseline updates
@@ -77,15 +80,15 @@ For each week of the mesocycle, you invoke the three specialist agents:
 
 #### 2. Physical Training Agent
 
-**When:** You need strength & conditioning sessions for a specific week.
+**When:** You need strength & conditioning sessions for the current mesocycle.
 
 **How:**
 1. Open Claude Code from the `physical/` folder.
 2. Provide:
-   - Reference to the mesocycle plan (e.g., "Week 3 of mesocycle-1")
+   - Reference to the current mesocycle plan (e.g., "RAGionamento - Week 3")
    - The week number, phase, assigned physical-training session count, and any load constraints from other session types
    - Injuries or limitations
-3. Agent outputs a CSV to `physical/sessions/week-{N}.csv`
+3. Agent outputs a CSV to `physical/current/{mesocycle-name}.csv`
 
 **Update `progressions.md`** after each session with:
 - Lift PRs achieved
@@ -94,14 +97,14 @@ For each week of the mesocycle, you invoke the three specialist agents:
 
 #### 3. Climbing Agent
 
-**When:** You need climbing sessions for a specific week.
+**When:** You need climbing sessions for the current mesocycle.
 
 **How:**
 1. Open Claude Code from the `climbing/` folder.
 2. Provide:
-   - Reference to the mesocycle plan (e.g., "Week 3 of mesocycle-1")
+   - Reference to the current mesocycle plan (e.g., "RAGionamento - Week 3")
    - The week number, discipline focus, assigned climbing session count, day placement, progression phase, and weekend usage
-3. Agent outputs a CSV to `climbing/sessions/week-{N}.csv`
+3. Agent outputs a CSV to `climbing/current/{mesocycle-name}.csv`
 
 **Update `progressions.md`** after each session with:
 - Sends (projects completed)
@@ -112,24 +115,35 @@ For each week of the mesocycle, you invoke the three specialist agents:
 
 ## File Naming Conventions
 
-All phase-2 sessions follow the pattern: `sessions/week-{N}.csv`
+All phase-2 sessions follow the pattern: `{mesocycle-name}.csv`
 
-For multi-week mesocycles, organize like:
+**Current mesocycle:** Files go in `current/`
+```
+hangboard/current/
+  └── 2026_inizio_estate_RAGionamento.csv
+
+physical/current/
+  └── 2026_inizio_estate_RAGionamento.csv
+
+climbing/current/
+  └── 2026_inizio_estate_RAGionamento.csv
+```
+
+**Historical mesocycles:** Files are archived in `sessions/`
 ```
 hangboard/sessions/
-  ├── week-1.csv
-  ├── week-2.csv
-  ├── week-3.csv
+  ├── 2025_02_Less is more_Sospensioni.xlsx
+  ├── 2024_10_Eritrocita_Sospensioni.xlsx
   └── ...
 
 physical/sessions/
-  ├── week-1.csv
-  ├── week-2.csv
+  ├── 2025_02_Less is more_Week 5-8.xlsx
+  ├── 2024_10_Eritrocita_Week 1-4.xlsx
   └── ...
 
 climbing/sessions/
-  ├── week-1.csv
-  ├── week-2.csv
+  ├── 2025_02_Less is more_Volumi allenamento.xlsx
+  ├── 2024_10_Eritrocita_Volumi allenamento.xlsx
   └── ...
 ```
 
@@ -172,12 +186,13 @@ Available for hangboard and physical training only:
 
 ## Workflow Summary for Humans
 
-1. **Week 0:** Write a mesocycle prompt → open `orchestrator/` → save the plan to `orchestrator/plans/`
-2. **Week 1–N:** For each week:
-   - Open `hangboard/` → request Week X → save CSV
-   - Open `physical/` → request Week X → save CSV
-   - Open `climbing/` → request Week X → save CSV
+1. **Mesocycle Start:** Write a mesocycle prompt → open `orchestrator/` → save the plan to `orchestrator/plans/`
+2. **During Mesocycle (Week 1–N):** For each week:
+   - Open `hangboard/` → request Week X → CSV saves to `current/`
+   - Open `physical/` → request Week X → CSV saves to `current/`
+   - Open `climbing/` → request Week X → CSV saves to `current/`
    - Execute sessions, log performance, update each `progressions.md`
+3. **Mesocycle End:** Archive current mesocycle files from `current/` → `sessions/` (historical)
 
 ---
 
@@ -189,7 +204,7 @@ Each agent **reads its `.claude/CLAUDE.md`** to understand its role. When invoke
 2. **Read context:** Query LightRAG (KB) or local files for historical data (existing plans, equipment specs).
 3. **Read progressions.md:** Review the agent's `progressions.md` to calibrate load and progression.
 4. **Generate plan:** Produce the exact CSV format specified in `.claude/CLAUDE.md`.
-5. **Write to disk:** Save output to `sessions/week-{N}.csv` in the agent's folder.
+5. **Write to disk:** Save output to `current/{mesocycle-name}.csv` in the agent's folder (overwriting the existing current mesocycle file).
 
 ---
 
@@ -228,11 +243,11 @@ Orchestrator outputs:
 
 ```
 You open hangboard/:
-  "Week 1 of mesocycle-1. I have 2 hangboard sessions assigned.
+  "Week 1 of RAGionamento. I have 2 hangboard sessions assigned.
    Currently in accumulation phase. No finger limitations."
 
 Hangboard Agent outputs:
-  → hangboard/sessions/week-1.csv
+  → hangboard/current/2026_inizio_estate_RAGionamento.csv
   
 (Repeat for physical/ and climbing/)
 
