@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 import { google } from 'googleapis';
-import { auth as googleAuth } from 'google-auth-library';
+import { GoogleAuth } from 'google-auth-library';
 
 const SHEETS_ID = process.env.GOOGLE_SHEETS_ID;
 const CREDS_PATH = process.env.GOOGLE_SHEETS_CREDS_PATH;
@@ -48,7 +48,7 @@ async function getAuthClient() {
   const credsContent = fs.readFileSync(CREDS_PATH, 'utf-8');
   const creds = JSON.parse(credsContent);
 
-  const auth = new googleAuth.GoogleAuth({
+  const auth = new GoogleAuth({
     credentials: creds,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
