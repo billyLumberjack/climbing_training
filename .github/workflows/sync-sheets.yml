@@ -1,0 +1,67 @@
+name: Sync Session Logs
+
+on:
+  workflow_dispatch:  # Manual trigger from GitHub UI
+  push:
+    paths:
+      - 'physical/current/**'
+      - 'hangboard/current/**'
+      - 'climbing/current/**'
+    branches:
+      - main
+  schedule:
+    - cron: '0 20 * * *'  # Daily at 8 PM UTC
+
+jobs:
+  sync-to-sheets:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'push' || github.event.repository.pushed_by != 'dependabot'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Determine sync direction
+        id: direction
+        run: |
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            echo "mode=--push" >> $GITHUB_OUTPUT
+            echo "direction=push (agent update)" >> $GITHUB_OUTPUT
+          else
+            echo "mode=--pull" >> $GITHUB_OUTPUT
+            echo "direction=pull (manual or scheduled)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Write credentials
+        env:
+          CREDS_JSON: ${{ secrets.GOOGLE_SHEETS_CREDS }}
+        run: |
+          echo "$CREDS_JSON" > /tmp/creds.json
+          echo "✅ Credentials written to /tmp/creds.json"
+
+      - name: Sync with Google Sheets
+        env:
+          GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
+          GOOGLE_SHEETS_CREDS_PATH: /tmp/creds.json
+        run: npx ts-node scripts/sync-sheets-to-git.ts ${{ steps.direction.outputs.mode }}
+
+      - name: Push committed changes
+        if: steps.direction.outputs.mode == '--pull'
+        run: |
+          git config user.name "Climbing Training Sync"
+          git config user.email "sync@training.local"
+          git push origin main || echo "ℹ️ No changes to push"
+
+      - name: Cleanup credentials
+        if: always()
+        run: rm -f /tmp/creds.json

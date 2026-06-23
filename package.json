@@ -1,0 +1,21 @@
+{
+  "name": "climbing-training-sync",
+  "version": "1.0.0",
+  "description": "Sync Google Sheets session logs with git repositories",
+  "main": "scripts/sync-sheets-to-git.ts",
+  "type": "module",
+  "scripts": {
+    "sync:pull": "ts-node scripts/sync-sheets-to-git.ts --pull",
+    "sync:push": "ts-node scripts/sync-sheets-to-git.ts --push",
+    "sync:auto": "ts-node scripts/sync-sheets-to-git.ts --auto"
+  },
+  "dependencies": {
+    "googleapis": "^135.0.0",
+    "google-auth-library": "^9.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

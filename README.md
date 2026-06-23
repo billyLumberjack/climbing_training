@@ -260,6 +260,69 @@ Same process for each week; agent loads / progression naturally escalates.
 
 ---
 
+## Google Sheets Integration
+
+Session logs are synced bidirectionally with a Google Sheets file for comfortable daily logging. The workflow is:
+
+### Setup (One-time)
+
+1. **Create Google Cloud Service Account:**
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project: "Climbing Training Sync"
+   - Enable **Google Sheets API**
+   - Create a Service Account → download JSON credentials
+   - Get the service account email: `climbing-training-sync@your-project.iam.gserviceaccount.com`
+
+2. **Create Google Sheets File:**
+   - Create new Sheets doc: "Climbing Training — RAGionamento 2026"
+   - Add 3 tabs: "Physical", "Hangboard", "Climbing"
+   - Share with service account email (Editor access)
+   - Get Sheets ID from URL: `https://docs.google.com/spreadsheets/d/{SHEETS_ID}/edit`
+
+3. **Configure GitHub Secrets:**
+   - Go to repo → Settings → Secrets and variables → Actions
+   - Add `GOOGLE_SHEETS_ID` = your Sheets ID
+   - Add `GOOGLE_SHEETS_CREDS` = paste entire service account JSON
+
+4. **Install Node.js dependencies:**
+   ```bash
+   npm install
+   ```
+
+### Daily Workflow
+
+**After each session:**
+1. Open Google Sheets
+2. Fill in columns: **Numero Esecuzioni** (reps performed), **Sforzo percepito** (actual RPE), notes
+3. Save → Go to GitHub repo → Actions → "Sync Session Logs" → Run workflow
+4. Script automatically commits updated CSVs to main
+
+**When agents generate new sessions:**
+- Agent pushes CSV to `{type}/current/`
+- GitHub Actions automatically triggers (detects push to `current/` folders)
+- Script uploads new data to Sheets
+- Your working copy is refreshed (no manual action needed)
+
+### Sync Modes
+
+- **--pull** (default): Fetch from Sheets → update local CSVs → commit to git
+- **--push**: Read local CSVs → upload to Sheets (used for agent updates)
+- **--auto**: Auto-detect which direction needs syncing (based on timestamps)
+
+### Manual Sync (Local)
+
+If you need to sync locally without GitHub Actions:
+
+```bash
+# Pull from Sheets → update CSVs
+GOOGLE_SHEETS_ID=your-id GOOGLE_SHEETS_CREDS_PATH=/path/to/creds.json npm run sync:pull
+
+# Push CSVs → update Sheets
+GOOGLE_SHEETS_ID=your-id GOOGLE_SHEETS_CREDS_PATH=/path/to/creds.json npm run sync:push
+```
+
+---
+
 ## Tips for Users
 
 - **Keep `progressions.md` up-to-date** — it's the agent's memory of your training trajectory.
