@@ -138,10 +138,10 @@ async function pullFromSheets() {
         continue;
       }
 
-      // Use the header row as the authoritative sheet column count: data rows may be
-      // shorter because the Sheets API trims trailing empty cells, but the header row
-      // always has every column named so it gives the true sheet width.
-      const sheetColCount = values[0]?.length ?? 0;
+      // Use the widest row across the entire response as sheetColCount: the header row
+      // may be narrower than data rows when some column headers are blank in the sheet.
+      const sheetColCount = values.reduce((max: number, row: any[]) => Math.max(max, row.length), 0);
+      const expectedCsvWidth = sheetColCount + 2;
 
       // Merge with existing logging columns from local CSV (preserve manual entries)
       if (fs.existsSync(config.csvPath)) {
@@ -149,14 +149,17 @@ async function pullFromSheets() {
         const existingRows = csvToArray(existingCsv);
 
         values = values.map((row, idx) => {
-          // Pad to sheet width so logging cols always land at the same column index
           const paddedRow = [...row];
           while (paddedRow.length < sheetColCount) paddedRow.push('');
 
           if (idx < existingRows.length) {
             const existingRow = existingRows[idx];
-            const loggingCols = existingRow.slice(-2);
-            return [...paddedRow, ...loggingCols];
+            // Only preserve logging cols when the existing CSV has the correct width;
+            // otherwise the old CSV structure is wrong and we start fresh with empty slots.
+            if (existingRow.length >= expectedCsvWidth) {
+              const loggingCols = existingRow.slice(sheetColCount, sheetColCount + 2);
+              return [...paddedRow, ...loggingCols];
+            }
           }
           return [...paddedRow, '', ''];
         });
