@@ -12,6 +12,9 @@ on:
   schedule:
     - cron: '0 20 * * *'  # Daily at 8 PM UTC
 
+permissions:
+  contents: write  # Allow pushing commits to the repository
+
 jobs:
   sync-to-sheets:
     runs-on: ubuntu-latest
@@ -62,7 +65,7 @@ jobs:
         run: |
           git config user.name "Climbing Training Sync"
           git config user.email "sync@training.local"
-          git push origin main || echo "ℹ️ No changes to push"
+          git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || echo "ℹ️ No changes to push"
 
       - name: Cleanup credentials
         if: always()
