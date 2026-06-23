@@ -16,6 +16,13 @@
     "rootDir": "./",
     "allowJs": true
   },
+  "ts-node": {
+    "esm": true,
+    "experimentalEsm": true,
+    "moduleTypes": {
+      "**/*": "esm"
+    }
+  },
   "include": ["scripts/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

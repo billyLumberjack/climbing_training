@@ -53,7 +53,7 @@ jobs:
         env:
           GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
           GOOGLE_SHEETS_CREDS_PATH: /tmp/creds.json
-        run: npx ts-node scripts/sync-sheets-to-git.ts ${{ steps.direction.outputs.mode }}
+        run: npx tsx scripts/sync-sheets-to-git.ts ${{ steps.direction.outputs.mode }}
 
       - name: Push committed changes
         if: steps.direction.outputs.mode == '--pull'

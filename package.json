@@ -5,9 +5,9 @@
   "main": "scripts/sync-sheets-to-git.ts",
   "type": "module",
   "scripts": {
-    "sync:pull": "ts-node scripts/sync-sheets-to-git.ts --pull",
-    "sync:push": "ts-node scripts/sync-sheets-to-git.ts --push",
-    "sync:auto": "ts-node scripts/sync-sheets-to-git.ts --auto"
+    "sync:pull": "tsx scripts/sync-sheets-to-git.ts --pull",
+    "sync:push": "tsx scripts/sync-sheets-to-git.ts --push",
+    "sync:auto": "tsx scripts/sync-sheets-to-git.ts --auto"
   },
   "dependencies": {
     "googleapis": "^135.0.0",
@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   }
 }
