@@ -44,7 +44,7 @@ const sheetConfigs: SheetConfig[] = [
     type: 'climbing',
     csvPath: './climbing/current/2026_inizio_estate_RAGionamento.csv',
     sheetName: 'Climbing',
-    headers: ['Week', 'Day', 'Short description', 'Duration/Sets', 'Movements', 'Reps', 'Rest'],
+    headers: ['Week', 'Day', 'Short description', 'Duration/Sets', 'Movements', 'Reps', 'Rest','REPS LOG', 'RPE LOG'],],
     loggingInSheet: false
   }
 ];
