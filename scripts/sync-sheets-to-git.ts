@@ -14,12 +14,8 @@ interface SheetConfig {
   csvPath: string;
   sheetName: string;
   headers: string[];
-  // When true, the last 2 logging columns live inside the sheet itself.
-  // Pull writes them straight to the CSV with no extra local slots.
-  // Push uploads all columns (no stripping).
-  // When false, logging columns are local-only: pull appends 2 empty slots
-  // and preserves them across syncs; push strips them before uploading.
-  loggingInSheet: boolean;
+  // Defines which columns are logging-only (local to CSV, not in Sheet)
+  loggingColumnIndices: number[];
 }
 
 const sheetConfigs: SheetConfig[] = [
@@ -29,7 +25,7 @@ const sheetConfigs: SheetConfig[] = [
     csvPath: './physical/current/2026_inizio_estate_RAGionamento.csv',
     sheetName: 'Physical',
     headers: ['Week', 'Day', 'Exercise', 'Set', 'Rep', 'Load', 'Note', 'Rest', 'Numero Esecuzioni', 'Sforzo percepito'],
-    loggingInSheet: false
+    loggingColumnIndices: [8, 9] // "Numero Esecuzioni", "Sforzo percepito" (last 2 cols)
   },
   {
     name: 'Hangboard',
@@ -37,15 +33,15 @@ const sheetConfigs: SheetConfig[] = [
     csvPath: './hangboard/current/2026_inizio_estate_RAGionamento.csv',
     sheetName: 'Hangboard',
     headers: ['WEEK', 'DAY', 'EXERCISE', 'TIME', 'REPS', 'SETS', 'RPE', 'REPS LOG', 'RPE LOG'],
-    loggingInSheet: true
+    loggingColumnIndices: [7, 8] // "REPS LOG", "RPE LOG" (last 2 cols)
   },
   {
     name: 'Climbing',
     type: 'climbing',
     csvPath: './climbing/current/2026_inizio_estate_RAGionamento.csv',
     sheetName: 'Climbing',
-    headers: ['Week', 'Day', 'Short description', 'Duration/Sets', 'Movements', 'Reps', 'Rest','REPS LOG', 'RPE LOG'],
-    loggingInSheet: false
+    headers: ['Week', 'Day', 'Short description', 'Duration/Sets', 'Movements', 'Reps', 'Rest', 'REPS LOG', 'RPE LOG'],
+    loggingColumnIndices: [7, 8] // "REPS LOG", "RPE LOG" (last 2 cols)
   }
 ];
 
@@ -120,152 +116,13 @@ function arrayToCsv(arr: string[][]): string {
     .join('\n');
 }
 
-async function pullFromSheets() {
-  console.log(`📥 Pulling from Google Sheets (${SHEETS_ID})`);
-
-  if (!SHEETS_ID) {
-    throw new Error('GOOGLE_SHEETS_ID environment variable not set');
-  }
-
-  const authClient = await getAuthClient();
-  const sheets = google.sheets({ version: 'v4', auth: authClient });
-
-  let changeCount = 0;
-
-  for (const config of sheetConfigs) {
-    console.log(`  📋 Syncing ${config.name}...`);
-
-    try {
-      const response = await sheets.spreadsheets.values.get({
-        spreadsheetId: SHEETS_ID,
-        range: `${config.sheetName}!A:Z`,
-      });
-
-      let values = response.data.values || [];
-      if (values.length === 0) {
-        console.log(`    ⚠️  No data found in sheet`);
-        continue;
-      }
-
-      // Use the widest row across the entire response — the header row may be narrower
-      // than data rows when some column headers are blank in the sheet.
-      const sheetColCount = values.reduce((max: number, row: any[]) => Math.max(max, row.length), 0);
-
-      if (config.loggingInSheet) {
-        // Logging columns live inside the sheet already — write exactly what the sheet
-        // returns, padded to uniform width. No extra local slots needed.
-        values = values.map(row => {
-          const paddedRow = [...row];
-          while (paddedRow.length < sheetColCount) paddedRow.push('');
-          return paddedRow;
-        });
-      } else {
-        // Logging columns are local-only. Append 2 slots after the sheet data and
-        // preserve any existing log entries from the current CSV.
-        const expectedCsvWidth = sheetColCount + 2;
-
-        if (fs.existsSync(config.csvPath)) {
-          const existingCsv = fs.readFileSync(config.csvPath, 'utf-8');
-          const existingRows = csvToArray(existingCsv);
-
-          values = values.map((row, idx) => {
-            const paddedRow = [...row];
-            while (paddedRow.length < sheetColCount) paddedRow.push('');
-
-            if (idx < existingRows.length) {
-              const existingRow = existingRows[idx];
-              // Only restore logging cols if the old CSV had the correct width;
-              // otherwise the structure was wrong and we start with empty slots.
-              if (existingRow.length >= expectedCsvWidth) {
-                const loggingCols = existingRow.slice(sheetColCount, sheetColCount + 2);
-                return [...paddedRow, ...loggingCols];
-              }
-            }
-            return [...paddedRow, '', ''];
-          });
-        } else {
-          values = values.map(row => {
-            const paddedRow = [...row];
-            while (paddedRow.length < sheetColCount) paddedRow.push('');
-            return [...paddedRow, '', ''];
-          });
-        }
-      }
-
-      // Write to CSV
-      const csvContent = arrayToCsv(values as string[][]);
-      const dir = path.dirname(config.csvPath);
-
-      if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-      }
-
-      fs.writeFileSync(config.csvPath, csvContent);
-      console.log(`    ✅ Updated ${config.csvPath} (${values.length} rows)`);
-      changeCount++;
-    } catch (error: any) {
-      if (error?.message?.includes('Unable to parse range')) {
-        console.log(`    ⚠️  Sheet "${config.sheetName}" not found - create it in Google Sheets first`);
-        console.log(`       Instructions: Open Google Sheets → Right-click sheet tab → Rename to "${config.sheetName}"`);
-      } else {
-        console.error(`    ❌ Error syncing ${config.name}:`, error instanceof Error ? error.message : error);
-      }
-    }
-  }
-
-  // Git commit if changes made
-  if (changeCount > 0) {
-    try {
-      // Ensure git identity is set — check output, not just exit code (empty string still exits 0)
-      let gitName = '';
-      try {
-        gitName = execSync('git config user.name', { cwd: process.cwd(), stdio: 'pipe' }).toString().trim();
-      } catch { /* not set */ }
-      if (!gitName) {
-        execSync('git config user.name "Climbing Training Sync"', { cwd: process.cwd(), stdio: 'pipe' });
-        execSync('git config user.email "sync@training.local"', { cwd: process.cwd(), stdio: 'pipe' });
-      }
-
-      // Stage all CSV changes
-      console.log('📝 Staging CSV files...');
-      execSync('git add physical/current/*.csv hangboard/current/*.csv climbing/current/*.csv', {
-        cwd: process.cwd(),
-        stdio: 'inherit',
-      });
-
-      // Check if there are actually staged changes
-      try {
-        execSync('git diff --cached --quiet', { cwd: process.cwd() });
-        // No changes staged
-        console.log('ℹ️  No staged changes (files identical)');
-        process.exit(0);
-      } catch {
-        // Changes are staged, proceed to commit
-      }
-
-      console.log('💾 Committing changes...');
-      execSync(
-        'git commit -m "Sync session logs from Google Sheets\n\nCo-Authored-By: Climbing Training Sync <sync@training.local>"',
-        {
-          cwd: process.cwd(),
-          stdio: 'inherit',
-        }
-      );
-
-      console.log(`✅ Successfully committed ${changeCount} updated CSV file(s)`);
-      process.exit(0);
-    } catch (error: any) {
-      console.error('❌ Git error:', error instanceof Error ? error.message : error);
-      process.exit(1);
-    }
-  } else {
-    console.log('✅ No changes from Sheets');
-    process.exit(0);
-  }
-}
-
+/**
+ * T3: Push CSV plan to Google Sheets
+ * Takes all columns EXCEPT logging columns and uploads to sheet.
+ * Sheet retains its own logging columns separately.
+ */
 async function pushToSheets() {
-  console.log(`📤 Pushing to Google Sheets (${SHEETS_ID})`);
+  console.log(`📤 [T3] Pushing CSV plan to Google Sheets (${SHEETS_ID})`);
 
   if (!SHEETS_ID) {
     throw new Error('GOOGLE_SHEETS_ID environment variable not set');
@@ -293,17 +150,19 @@ async function pushToSheets() {
         continue;
       }
 
-      // When logging is local-only, strip the 2 trailing local cols before uploading.
-      // When logging lives in the sheet, upload all columns as-is.
-      const rowsWithoutLogging = config.loggingInSheet ? rows : rows.map(row => row.slice(0, -2));
+      // Strip logging columns before uploading to Sheet
+      // Sheet manages its own logging columns separately
+      const rowsWithoutLogging = rows.map(row => 
+        row.filter((_, idx) => !config.loggingColumnIndices.includes(idx))
+      );
 
-      // Clear existing data
+      // Clear existing data in sheet
       await sheets.spreadsheets.values.clear({
         spreadsheetId: SHEETS_ID,
         range: `${config.sheetName}!A:Z`,
       });
 
-      // Write new data (without logging columns)
+      // Write new data (plan columns only, no logging)
       await sheets.spreadsheets.values.update({
         spreadsheetId: SHEETS_ID,
         range: `${config.sheetName}!A1`,
@@ -313,22 +172,161 @@ async function pushToSheets() {
         },
       });
 
-      console.log(`    ✅ Uploaded ${rowsWithoutLogging.length} rows (${rowsWithoutLogging[0]?.length || 0} cols) to ${config.sheetName}`);
+      const uploadedCols = rowsWithoutLogging[0]?.length || 0;
+      console.log(`    ✅ Uploaded ${rowsWithoutLogging.length} rows × ${uploadedCols} cols to ${config.sheetName}`);
+      console.log(`       (stripped ${config.loggingColumnIndices.length} logging columns)`);
       changeCount++;
     } catch (error) {
       console.error(`    ❌ Error syncing ${config.name}:`, error);
     }
   }
 
-  console.log(`\n✅ Pushed ${changeCount} sheet(s) to Google Sheets`);
+  console.log(`\n✅ Successfully pushed ${changeCount} sheet(s) to Google Sheets\n`);
   process.exit(0);
 }
 
-async function autoSync() {
-  // Check file modification times and sync the stale direction
-  console.log('🔄 Auto-detecting sync direction...');
-  // For now, default to pull (can be enhanced with timestamp logic)
-  await pullFromSheets();
+/**
+ * T5: Pull logging data from Google Sheets into CSV
+ * Takes only the logging columns from sheet and merges them into CSV.
+ * Commits and pushes the updated CSV files.
+ */
+async function pullFromSheets() {
+  console.log(`📥 [T5] Pulling logging data from Google Sheets (${SHEETS_ID})`);
+
+  if (!SHEETS_ID) {
+    throw new Error('GOOGLE_SHEETS_ID environment variable not set');
+  }
+
+  const authClient = await getAuthClient();
+  const sheets = google.sheets({ version: 'v4', auth: authClient });
+
+  let changeCount = 0;
+
+  for (const config of sheetConfigs) {
+    console.log(`  📋 Syncing ${config.name}...`);
+
+    try {
+      if (!fs.existsSync(config.csvPath)) {
+        console.log(`    ⚠️  CSV file not found: ${config.csvPath}`);
+        continue;
+      }
+
+      // Read current CSV to preserve plan columns
+      const existingCsv = fs.readFileSync(config.csvPath, 'utf-8');
+      const existingRows = csvToArray(existingCsv);
+
+      if (existingRows.length === 0) {
+        console.log(`    ⚠️  CSV file is empty`);
+        continue;
+      }
+
+      // Fetch all data from sheet
+      const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: SHEETS_ID,
+        range: `${config.sheetName}!A:Z`,
+      });
+
+      const sheetValues = response.data.values || [];
+      if (sheetValues.length === 0) {
+        console.log(`    ⚠️  No data found in sheet`);
+        continue;
+      }
+
+      // Count columns in sheet (plan columns only)
+      const sheetColCount = sheetValues.reduce((max: number, row: any[]) => Math.max(max, row.length), 0);
+
+      // Merge: keep plan from sheet, preserve/extract logging from CSV
+      const mergedRows = sheetValues.map((sheetRow, idx) => {
+        const paddedSheetRow = [...sheetRow];
+        while (paddedSheetRow.length < sheetColCount) paddedSheetRow.push('');
+
+        // Extract logging columns from existing CSV row (if present)
+        let loggingCols: string[] = [];
+        if (idx < existingRows.length) {
+          const existingRow = existingRows[idx];
+          loggingCols = config.loggingColumnIndices.map(colIdx => existingRow[colIdx] || '');
+        } else {
+          // New rows from sheet get empty logging slots
+          loggingCols = config.loggingColumnIndices.map(() => '');
+        }
+
+        return [...paddedSheetRow, ...loggingCols];
+      });
+
+      // Write merged data back to CSV
+      const csvContent = arrayToCsv(mergedRows);
+      fs.writeFileSync(config.csvPath, csvContent);
+      console.log(`    ✅ Updated ${config.csvPath} (${mergedRows.length} rows with logging data)`);
+      changeCount++;
+    } catch (error: any) {
+      if (error?.message?.includes('Unable to parse range')) {
+        console.log(`    ⚠️  Sheet "${config.sheetName}" not found`);
+      } else {
+        console.error(`    ❌ Error syncing ${config.name}:`, error);
+      }
+    }
+  }
+
+  // Commit and push if changes were made
+  if (changeCount > 0) {
+    try {
+      // Ensure git identity is set
+      let gitName = '';
+      try {
+        gitName = execSync('git config user.name', { cwd: process.cwd(), stdio: 'pipe' }).toString().trim();
+      } catch { /* not set */ }
+      if (!gitName) {
+        execSync('git config user.name "Climbing Training Sync"', { cwd: process.cwd(), stdio: 'pipe' });
+        execSync('git config user.email "sync@training.local"', { cwd: process.cwd(), stdio: 'pipe' });
+      }
+
+      // Stage CSV changes
+      console.log('\n📝 Staging CSV files...');
+      execSync('git add physical/current/*.csv hangboard/current/*.csv climbing/current/*.csv', {
+        cwd: process.cwd(),
+        stdio: 'inherit',
+      });
+
+      // Check if there are actually staged changes
+      try {
+        execSync('git diff --cached --quiet', { cwd: process.cwd() });
+        // No changes staged
+        console.log('ℹ️  No staged changes (files identical)');
+        process.exit(0);
+      } catch {
+        // Changes are staged, proceed to commit
+      }
+
+      // Commit
+      console.log('💾 Committing changes...');
+      execSync(
+        'git commit -m "Sync session logs from Google Sheets\n\nCo-Authored-By: Climbing Training Sync <sync@training.local>"',
+        {
+          cwd: process.cwd(),
+          stdio: 'inherit',
+        }
+      );
+
+      // Push
+      console.log('🚀 Pushing to repository...');
+      execSync(
+        `git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main`,
+        {
+          cwd: process.cwd(),
+          stdio: 'inherit',
+        }
+      );
+
+      console.log(`\n✅ Successfully pulled and pushed ${changeCount} updated CSV file(s)\n`);
+      process.exit(0);
+    } catch (error: any) {
+      console.error('❌ Git error:', error instanceof Error ? error.message : error);
+      process.exit(1);
+    }
+  } else {
+    console.log('\n✅ No changes from Sheets\n');
+    process.exit(0);
+  }
 }
 
 async function main() {
@@ -338,17 +336,24 @@ async function main() {
     }
 
     switch (MODE) {
+      case '--push-only':
+        // T3: Push CSV plan to Sheet (no git operations)
+        await pushToSheets();
+        break;
+      case '--pull-only':
+        // T5: Pull logging data from Sheet, merge into CSV, commit & push
+        await pullFromSheets();
+        break;
       case '--pull':
+        // Legacy: same as --pull-only
         await pullFromSheets();
         break;
       case '--push':
+        // Legacy: same as --push-only
         await pushToSheets();
         break;
-      case '--auto':
-        await autoSync();
-        break;
       default:
-        throw new Error(`Unknown mode: ${MODE}. Use --pull, --push, or --auto`);
+        throw new Error(`Unknown mode: ${MODE}. Use --push-only, --pull-only, --push, or --pull`);
     }
   } catch (error) {
     console.error('❌ Error:', error instanceof Error ? error.message : error);
