@@ -1,6 +1,8 @@
 name: Sheets Sync
 
 on:
+  schedule:
+    - cron: '0 * * * *'  # every hour at :00 UTC
   push:
     paths:
       - 'physical/current/**'
@@ -57,7 +59,9 @@ jobs:
   pull-from-sheets:
     name: T5 — Pull logs from Sheets
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'pull'
+    if: >
+      github.event_name == 'schedule' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'pull')
     steps:
       - uses: actions/checkout@v4
         with:
@@ -87,7 +91,13 @@ jobs:
         run: npx tsx scripts/sync-sheets-to-git.ts --pull-only
 
       - name: Push committed changes
-        run: git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || echo "ℹ️ No changes to push"
+        run: |
+          if git diff --quiet origin/main..HEAD; then
+            echo "ℹ️ No new log entries to push"
+          else
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main
+            echo "✅ Pushed updated log entries to main"
+          fi
 
       - name: Cleanup credentials
         if: always()
