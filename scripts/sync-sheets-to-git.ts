@@ -150,12 +150,27 @@ async function pushToSheets() {
         continue;
       }
 
+      // Fetch existing sheet data to preserve logging columns the user has filled in.
+      let existingSheetValues: string[][] = [];
+      try {
+        const sheetResponse = await sheets.spreadsheets.values.get({
+          spreadsheetId: SHEETS_ID,
+          range: `${config.sheetName}!A:Z`,
+        });
+        existingSheetValues = (sheetResponse.data.values || []) as string[][];
+      } catch {
+        // Sheet may not exist yet on first push — that's fine
+      }
+
       // Header row: keep all columns so logging headers are visible in the Sheet.
-      // Data rows: same column count but logging cells blanked (user fills them via T4).
+      // Data rows: preserve logging cells from the sheet; overwrite plan columns from CSV.
       const rowsToUpload = rows.map((row, rowIdx) => {
         if (rowIdx === 0) return row;
+        const existingRow = existingSheetValues[rowIdx] || [];
         return row.map((cell, colIdx) =>
-          config.loggingColumnIndices.includes(colIdx) ? '' : cell
+          config.loggingColumnIndices.includes(colIdx)
+            ? (existingRow[colIdx] ?? cell)
+            : cell
         );
       });
 
