@@ -1,11 +1,11 @@
-WEEK,DAY,EXERCISE,TIME,REPS,SETS,RPE,,REPS LOG,RPE LOG
-1,Mon (Maintenance — single session of the week),Sospensioni due mani 20 mm — semiarcuata,6 s,1,3,6,non fatto,non fatto,
-1,Mon (Maintenance — single session of the week),Sospensioni svase (Moon hangboard),6 s,1,3,6,non fatto,non fatto,
-1,Mon (Maintenance — single session of the week),Cool-down — easy shake-out + forearm stretch,3-5 min,—,1,—,non fatto,non fatto,
+WEEK,DAY,EXERCISE,TIME,REPS,SETS,RPE,,,REPS LOG
+1,Mon (Maintenance — single session of the week),Sospensioni due mani 20 mm — semiarcuata,6 s,1,3,6,non fatto,non fatto,non fatto
+1,Mon (Maintenance — single session of the week),Sospensioni svase (Moon hangboard),6 s,1,3,6,non fatto,non fatto,non fatto
+1,Mon (Maintenance — single session of the week),Cool-down — easy shake-out + forearm stretch,3-5 min,—,1,—,non fatto,non fatto,non fatto
 ,,,,,,,,,
-2,Mon (Principale — max hang + svase + AMRAP test),Sospensioni due mani 20 mm — semiarcuata,7 s,1,5,8.5,,1;1;1;1;1,8.5
-2,Mon (Principale — max hang + svase + AMRAP test),Sospensioni svase (Moon hangboard),7 s,1,5,8.5,,1;1;1;1;1,8.5
-2,Mon (Principale — max hang + svase + AMRAP test),Sospensione due mani 20 mm AMRAP @ +25 kg,AMRAP,1,1,10,,6'',9 - zero voglia
+2,Mon (Principale — max hang + svase + AMRAP test),Sospensioni due mani 20 mm — semiarcuata,7 s,1,5,8.5,"1;1;1;1;1,8.5",,1;1;1;1;1
+2,Mon (Principale — max hang + svase + AMRAP test),Sospensioni svase (Moon hangboard),7 s,1,5,8.5,"1;1;1;1;1,8.5",,1;1;1;1;1
+2,Mon (Principale — max hang + svase + AMRAP test),Sospensione due mani 20 mm AMRAP @ +25 kg,AMRAP,1,1,10,"6'',9 - zero voglia",,6''
 2,Mon (Principale — max hang + svase + AMRAP test),Cool-down — easy shake-out + forearm stretch,3-5 min,—,1,—,,,
 ,,,,,,,,,
 3,Mon (Principale — single hangboard session of the week),Sospensioni due mani 20 mm — semiarcuata,6-7 s,1,4,9,,,
