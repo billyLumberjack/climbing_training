@@ -150,11 +150,14 @@ async function pushToSheets() {
         continue;
       }
 
-      // Strip logging columns before uploading to Sheet
-      // Sheet manages its own logging columns separately
-      const rowsWithoutLogging = rows.map(row => 
-        row.filter((_, idx) => !config.loggingColumnIndices.includes(idx))
-      );
+      // Header row: keep all columns so logging headers are visible in the Sheet.
+      // Data rows: same column count but logging cells blanked (user fills them via T4).
+      const rowsToUpload = rows.map((row, rowIdx) => {
+        if (rowIdx === 0) return row;
+        return row.map((cell, colIdx) =>
+          config.loggingColumnIndices.includes(colIdx) ? '' : cell
+        );
+      });
 
       // Clear existing data in sheet
       await sheets.spreadsheets.values.clear({
@@ -162,19 +165,18 @@ async function pushToSheets() {
         range: `${config.sheetName}!A:Z`,
       });
 
-      // Write new data (plan columns only, no logging)
       await sheets.spreadsheets.values.update({
         spreadsheetId: SHEETS_ID,
         range: `${config.sheetName}!A1`,
         valueInputOption: 'RAW',
         requestBody: {
-          values: rowsWithoutLogging,
+          values: rowsToUpload,
         },
       });
 
-      const uploadedCols = rowsWithoutLogging[0]?.length || 0;
-      console.log(`    ✅ Uploaded ${rowsWithoutLogging.length} rows × ${uploadedCols} cols to ${config.sheetName}`);
-      console.log(`       (stripped ${config.loggingColumnIndices.length} logging columns)`);
+      const uploadedCols = rowsToUpload[0]?.length || 0;
+      console.log(`    ✅ Uploaded ${rowsToUpload.length} rows × ${uploadedCols} cols to ${config.sheetName}`);
+      console.log(`       (${config.loggingColumnIndices.length} logging cells blanked, headers preserved)`);
       changeCount++;
     } catch (error) {
       console.error(`    ❌ Error syncing ${config.name}:`, error);
