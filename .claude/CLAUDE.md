@@ -39,3 +39,7 @@ and any other climbing-related documents that have been indexed.
 - `local` — entity-focused, good for "what is X" or specific technique/drill questions
 - `global` — theme-focused, good for "what are the main principles of X" type questions
 - `naive` — simple vector search, fastest, use when you just need a quick lookup
+
+## Orchestrator Instructions
+
+@orchestrator/.claude/CLAUDE.md
