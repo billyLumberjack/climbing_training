@@ -43,7 +43,7 @@ the plan. Do not invent assumptions on critical inputs.
 Return a SINGLE CSV file covering the entire mesocycle (all weeks) —
 NOT one file per week. Use this exact header (only once, at the top):
 
-Week,Day,Short description,Duration/Sets,Movements,Reps,Rest
+Week,Day,Short description,Duration/Sets,Movements,Reps,Rest,REPS LOG,RPE LOG
 
 Rules:
 

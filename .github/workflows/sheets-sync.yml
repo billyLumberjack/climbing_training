@@ -1,0 +1,94 @@
+name: Sheets Sync
+
+on:
+  push:
+    paths:
+      - 'physical/current/**'
+      - 'hangboard/current/**'
+      - 'climbing/current/**'
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'pull = fetch logs from Sheets → CSV (T5) | push = overwrite Sheets with CSV plan (T3)'
+        required: false
+        default: 'pull'
+        type: choice
+        options:
+          - pull
+          - push
+
+permissions:
+  contents: write
+
+jobs:
+  push-to-sheets:
+    name: T3 — Push CSV plan to Sheets
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'push')
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm install
+
+      - name: Write credentials
+        env:
+          CREDS_JSON: ${{ secrets.GOOGLE_SHEETS_CREDS }}
+        run: echo "$CREDS_JSON" > /tmp/creds.json
+
+      - name: Push CSV plan to Google Sheets
+        env:
+          GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
+          GOOGLE_SHEETS_CREDS_PATH: /tmp/creds.json
+        run: npx tsx scripts/sync-sheets-to-git.ts --push-only
+
+      - name: Cleanup credentials
+        if: always()
+        run: rm -f /tmp/creds.json
+
+  pull-from-sheets:
+    name: T5 — Pull logs from Sheets
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'pull'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm install
+
+      - name: Write credentials
+        env:
+          CREDS_JSON: ${{ secrets.GOOGLE_SHEETS_CREDS }}
+        run: echo "$CREDS_JSON" > /tmp/creds.json
+
+      - name: Configure git
+        run: |
+          git config user.name "Climbing Training Sync"
+          git config user.email "sync@training.local"
+
+      - name: Pull logs from Sheets and commit
+        env:
+          GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
+          GOOGLE_SHEETS_CREDS_PATH: /tmp/creds.json
+        run: npx tsx scripts/sync-sheets-to-git.ts --pull-only
+
+      - name: Push committed changes
+        run: git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || echo "ℹ️ No changes to push"
+
+      - name: Cleanup credentials
+        if: always()
+        run: rm -f /tmp/creds.json

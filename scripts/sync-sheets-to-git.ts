@@ -24,7 +24,7 @@ const sheetConfigs: SheetConfig[] = [
     type: 'physical',
     csvPath: './physical/current/2026_inizio_estate_RAGionamento.csv',
     sheetName: 'Physical',
-    headers: ['Week', 'Day', 'Exercise', 'Set', 'Rep', 'Load', 'Note', 'Rest', 'Numero Esecuzioni', 'Sforzo percepito'],
+    headers: ['Week', 'Day', 'Exercise', 'Set', 'Rep', 'Load', 'Note', 'Rest', 'REPS LOG', 'RPE LOG'],
     loggingColumnIndices: [8, 9] // "Numero Esecuzioni", "Sforzo percepito" (last 2 cols)
   },
   {
@@ -307,17 +307,7 @@ async function pullFromSheets() {
         }
       );
 
-      // Push
-      console.log('🚀 Pushing to repository...');
-      execSync(
-        `git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main`,
-        {
-          cwd: process.cwd(),
-          stdio: 'inherit',
-        }
-      );
-
-      console.log(`\n✅ Successfully pulled and pushed ${changeCount} updated CSV file(s)\n`);
+      console.log(`\n✅ Committed ${changeCount} updated CSV file(s) — workflow will push\n`);
       process.exit(0);
     } catch (error: any) {
       console.error('❌ Git error:', error instanceof Error ? error.message : error);

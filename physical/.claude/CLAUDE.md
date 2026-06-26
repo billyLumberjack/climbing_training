@@ -59,7 +59,7 @@ the program.
 
 Columns, in this exact order:
 
-Week,Day,Exercise,Set,Rep,Load,Note,Rest,Numero Esecuzioni,Sforzo percepito
+Week,Day,Exercise,Set,Rep,Load,Note,Rest,REPS LOG,RPE LOG
 
 Rules:
 
@@ -73,10 +73,10 @@ Rules:
 - "Rest" = rest interval, with unit (e.g. "90s", "2min").
 - "Note" = jump-set tag, tempo cue, range-of-motion note, or any
   constraint the user must respect.
-- "Numero Esecuzioni" = leave blank; the user fills this in after the
-  session with the reps actually performed.
-- "Sforzo percepito" = leave blank; the user fills this in after the
-  session with the actual RPE experienced.
+- "REPS LOG" = leave blank; the user fills this in after the session
+  with the reps actually performed.
+- "RPE LOG" = leave blank; the user fills this in after the session
+  with the actual RPE experienced.
 
 File location:
 
