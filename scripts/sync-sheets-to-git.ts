@@ -234,25 +234,16 @@ async function pullFromSheets() {
         continue;
       }
 
-      // Count columns in sheet (plan columns only)
-      const sheetColCount = sheetValues.reduce((max: number, row: any[]) => Math.max(max, row.length), 0);
-
-      // Merge: keep plan from sheet, preserve/extract logging from CSV
-      const mergedRows = sheetValues.map((sheetRow, idx) => {
-        const paddedSheetRow = [...sheetRow];
-        while (paddedSheetRow.length < sheetColCount) paddedSheetRow.push('');
-
-        // Extract logging columns from existing CSV row (if present)
-        let loggingCols: string[] = [];
-        if (idx < existingRows.length) {
-          const existingRow = existingRows[idx];
-          loggingCols = config.loggingColumnIndices.map(colIdx => existingRow[colIdx] || '');
-        } else {
-          // New rows from sheet get empty logging slots
-          loggingCols = config.loggingColumnIndices.map(() => '');
-        }
-
-        return [...paddedSheetRow, ...loggingCols];
+      // CSV is the structural driver: iterate over CSV rows and only overwrite
+      // logging cells with the Sheet value at the same column index.
+      const mergedRows = existingRows.map((csvRow, idx) => {
+        if (idx === 0) return csvRow; // keep CSV header verbatim
+        const sheetRow = sheetValues[idx] || [];
+        return csvRow.map((cell, colIdx) =>
+          config.loggingColumnIndices.includes(colIdx)
+            ? (sheetRow[colIdx] ?? cell)
+            : cell
+        );
       });
 
       // Write merged data back to CSV
