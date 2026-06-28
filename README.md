@@ -1,5 +1,6 @@
 # Climbing Training — Multi-Agent Orchestration System
 
+
 This project is a **four-agent system for generating and managing climbing training mesocycles**. One orchestrator agent designs the high-level structure; three specialist agents (Hangboard, Physical Training, Climbing) generate detailed session plans.
 
 ## Project Structure
