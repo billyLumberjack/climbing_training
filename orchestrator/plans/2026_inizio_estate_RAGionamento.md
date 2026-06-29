@@ -4,6 +4,67 @@
 **Duration:** 4 weeks
 **Goal:** chiudere il progetto outdoor 7a+ e migliorare la fluidità di movimento al grado limite.
 
+> **⚠️ REPLAN 2026-06-29 (inizio W3) — vedi sezione "REPLAN" sotto.** Il redpoint 7a+ è **rinviato al prossimo meso (condizioni più fresche)**. W3–W4 sono riscritte come **blocco fluidità** su bouldering. Le sezioni originali W3/W4 (placement + curva volume) restano sotto come storico ma sono **superate** dalla sezione REPLAN.
+
+---
+
+## REPLAN 2026-06-29 — Heat pivot → blocco fluidità (W3 + W4)
+
+### Cosa è cambiato
+
+- **Weekend W2 saltato come da piano**: meteo brutto → l'atleta ha fatto outdoor bouldering (facili fino a 6b + 45' di tentativi su un vecchio progetto strength 7a+) invece del weekend rope (fondo aerobico Dom + mileage su via Sab). → **La base aerobica / mileage su via che W2 doveva costruire NON è stata costruita.** L'atleta arriva a W3 **fresco**, non caricato.
+- **Rope troppo caldo nei weekend** per le prossime 2 settimane.
+- **Sab W3 (4 lug) occupato** → solo Dom 5 lug disponibile.
+- **W4 weekend**: un giorno garantito + uno flessibile.
+- **Decisione utente**: niente send target → **blocco fluidità puro**, redpoint rinviato a meso più fresco.
+
+### Razionale del pivot (KB-grounded)
+
+- Skill acquisition richiede stato **fresco e rilassato** (ch.4: "stress, anxiety and urgency inhibit skill acquisition and fluid movement"). Essere freschi è un **asset** per un blocco fluidità, non un problema. Niente peak → **niente deload necessario**: entrambe le settimane sono blocchi di qualità.
+- Il bouldering al limite è "the ideal environment to develop unique motor skills" (ch.4) → quello che l'atleta ha già fatto nel weekend W2 è **on-target** per la fluidità.
+- Bouldering = fluidità **esplosiva**; route = **economia sostenuta sotto fatica** (complementari) → il filo "rope/fluidità sostenuta" non muore, si sposta **indoor (AC) infrasettimanale**.
+- Mobilità promossa a componente reale: hip turnout / dorsiflessione caviglia determinano qualità del movimento (drop-knee, heel hook, hip turn; gap intermediate-elite fino al 31% nel foot-race test). Forza → solo mantenimento (nessun obiettivo forza in questo blocco).
+
+### Weekly session count (rivisto)
+
+| Sett | Fase | HANGBOARD | PHYSICAL | CLIMBING | Giorni climbing-related |
+|------|------|-----------|----------|----------|-------------------------|
+| W3 (29 giu–5 lug) | Skill build — blocked→variable | 1 | 1 (+mini-blocco mobilità Lun) | 3 | 4 (Lun, Mer, Gio, Dom) |
+| W4 (6–12 lug) | Consolidamento — variable/random + speed | 1 | 1 (+mini-blocco mobilità Lun) | 2–3 | 3–4 |
+
+### Placement preferences (rivisto)
+
+**W3**
+- Lun: HB mantenimento (1 max hang, fresco) + mini-blocco mobilità/antagonista.
+- Mar: rest.
+- Mer sera (indoor AC): **skill fresco** — traverse/elimination drills, random practice (linkare problemi diversi), downclimbing per footwork; chiusura con **mileage per economia sotto fatica**: lead indoor a grado moderato **oppure** circuito boulder lungo-ma-facile (a scelta secondo disponibilità della palestra).
+- Gio sera (indoor): **volume di movimento** / fatigued-skill su sequenze padroneggiate (submax).
+- Ven: PT principale (bias mobilità/antagonista).
+- Sab: occupato.
+- Dom (outdoor boulder): skill fresco **blocked→variable** su angoli vari; target = grip leggero / piedi silenziosi / pace; il vecchio blocco 7a+ ammesso **come movement practice, NON performance-chasing** (ch.4: inseguire i tick groova brutte abitudini); chiusura su problemi facili padroneggiati.
+
+**W4**
+- Lun: HB mantenimento + mini-blocco mobilità.
+- Mar: PT principale.
+- Mer sera (indoor): **random practice + speed** su movimenti consolidati + downclimbing; chiusura con mileage per economia sotto fatica (lead indoor moderato **oppure** circuito boulder lungo-ma-facile).
+- Gio + Ven: rest (preparare il weekend freschi).
+- **Sab (garantito, outdoor boulder)**: sessione principale — variable + random practice, speed sui pattern consolidati.
+- **Dom (flessibile)**: 2ª sessione facile di movimento se le condizioni lo permettono, altrimenti rest/mobilità.
+
+### Curva / progressione
+
+- Ogni settimana ordina **qualità → potenza → endurance** (KB weekly framework): skill fresco sempre per primo, mileage/fatigued-skill dopo; mai strength-bouldering prima della tecnica.
+- Arco skill KB: **blocked** (2–3 rip per groovare il feel) → **variable** (cambia angolo/prese/spaziatura) → **random + speed** (linka problemi dissimili, poi speed sul consolidato). W4 chiude più leggera (Gio/Ven rest) per **handoff fresco** al meso freddo dove torna il redpoint.
+- HB **1/sett mantenimento** (cap ≤3/sett, nessun PR dita). PT **1/sett** ribiasato su **mobilità + antagonista** (prevenzione gomito/spalla). Giorni climbing-related **≤4** (cap intermediate Hörst).
+
+### Riferimenti KB aggiunti
+
+- `chapter_4` — perfect economy, footwork, relaxation, pace, blocked→variable→random practice, fatigued-skill, traverse/elimination drills, speed training.
+- `The_Effects_of_Prioritizing_Lead_or_Boulder_Climbing.pdf`, `421_2025_Article_5802.pdf` — bouldering vs route per fluidità.
+- `17.md` / `12.md` — mobilità anca/caviglia come determinante del movimento.
+
+---
+
 ## Inputs ricevuti dall'utente
 
 - Livello attuale: red-pointing 7a+ — al tentativo del Meso 2 W4 (2026-06-14) è arrivato all'ultimo passo, no send.
