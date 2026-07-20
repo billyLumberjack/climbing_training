@@ -18,11 +18,23 @@ interface SheetConfig {
   loggingColumnIndices: number[];
 }
 
+// One CSV per discipline lives in current/ (repo convention); resolve it
+// dynamically so the script survives mesocycle renames.
+function currentCsvPath(type: string): string {
+  const dir = `./${type}/current`;
+  const csvs = fs.readdirSync(dir).filter((f) => f.endsWith('.csv'));
+  if (csvs.length !== 1) {
+    console.log(`⚠️  Expected exactly 1 CSV in ${dir}, found ${csvs.length}`);
+    return path.join(dir, '__no_current_mesocycle__.csv');
+  }
+  return path.join(dir, csvs[0]);
+}
+
 const sheetConfigs: SheetConfig[] = [
   {
     name: 'Physical',
     type: 'physical',
-    csvPath: './physical/current/2026_inizio_estate_RAGionamento.csv',
+    csvPath: currentCsvPath('physical'),
     sheetName: 'Physical',
     headers: ['Week', 'Day', 'Exercise', 'Set', 'Rep', 'Load', 'Note', 'Rest', 'REPS LOG', 'RPE LOG'],
     loggingColumnIndices: [8, 9] // "Numero Esecuzioni", "Sforzo percepito" (last 2 cols)
@@ -30,7 +42,7 @@ const sheetConfigs: SheetConfig[] = [
   {
     name: 'Hangboard',
     type: 'hangboard',
-    csvPath: './hangboard/current/2026_inizio_estate_RAGionamento.csv',
+    csvPath: currentCsvPath('hangboard'),
     sheetName: 'Hangboard',
     headers: ['WEEK', 'DAY', 'EXERCISE', 'TIME', 'REPS', 'SETS', 'RPE', 'REPS LOG', 'RPE LOG'],
     loggingColumnIndices: [7, 8] // "REPS LOG", "RPE LOG" (last 2 cols)
@@ -38,7 +50,7 @@ const sheetConfigs: SheetConfig[] = [
   {
     name: 'Climbing',
     type: 'climbing',
-    csvPath: './climbing/current/2026_inizio_estate_RAGionamento.csv',
+    csvPath: currentCsvPath('climbing'),
     sheetName: 'Climbing',
     headers: ['Week', 'Day', 'Short description', 'Duration/Sets', 'Movements', 'Reps', 'Rest', 'REPS LOG', 'RPE LOG'],
     loggingColumnIndices: [7, 8] // "REPS LOG", "RPE LOG" (last 2 cols)
