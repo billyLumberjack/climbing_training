@@ -15,3 +15,11 @@ WEEK,DAY,EXERCISE,TIME,REPS,SETS,RPE,REPS LOG,RPE LOG
 4,Mon (Maintenance — single session — lighter: clean handoff to next cooler meso where redpoint returns),Sospensioni due mani 20 mm — semiarcuata,5-6 s,1,3,6,Fatto con 15kg,7.5
 4,Mon (Maintenance — single session — lighter: clean handoff to next cooler meso where redpoint returns),Sospensioni svase (Moon hangboard),5-6 s,1,3,6,Fatto con 15kg,7
 4,Mon (Maintenance — single session — lighter: clean handoff to next cooler meso where redpoint returns),Cool-down — easy shake-out + forearm stretch,3-5 min,—,1,—,non fatto,
+,,,,,,,,
+Travel,Travel session (fingers) — travel edge board 2 cm ≈ home 20mm semiarcuata; BW only (no added load available while travelling),Warm-up — prese grandi due mani,10 s,1,2,3,,
+Travel,Travel session (fingers) — travel edge board 2 cm ≈ home 20mm semiarcuata; BW only (no added load available while travelling),Warm-up — bordo 2 cm due mani (grip aperto),8 s,1,2,4-5,,
+Travel,Travel session (fingers) — travel edge board 2 cm ≈ home 20mm semiarcuata; BW only (no added load available while travelling),Bordo 2 cm due mani — CALIBRAZIONE (log RPE per tarare il blocco principale),10 s,1,1,log,,
+Travel,Travel session (fingers) — travel edge board 2 cm ≈ home 20mm semiarcuata; BW only (no added load available while travelling),Bordo 2 cm due mani — principale (10-12s dritti se calib RPE>=6 altrimenti repeaters 7:3x5),10-12 s o repeaters 7:3,1 o 5,3,6-7,,
+Travel,Travel session (fingers) — travel edge board 2 cm ≈ home 20mm semiarcuata; BW only (no added load available while travelling),Svasa (più aperta del Moon) due mani,10-12 s,1,2,5-6,,
+Travel,Travel session (fingers) — travel edge board 2 cm ≈ home 20mm semiarcuata; BW only (no added load available while travelling),(Opzionale) prese grandi repeaters 7:3,7 s on / 3 s off,6,1,4-5,,
+Travel,Travel session (fingers) — travel edge board 2 cm ≈ home 20mm semiarcuata; BW only (no added load available while travelling),Cool-down — shake-out mani,3-5 min,—,1,—,,
