@@ -1,6 +1,13 @@
 # Hangboard progressions
 
-Last updated from: `sessions/2026_maggio_giugno_VIBETRAINING.xlsx - SOSPENSIONI (1).csv` (Meso 2 VIBETRAINING)
+Last updated from: `current/2026_inizio_estate_RAGionamento.csv` (Meso 3 RAGionamento, incl. W5 travel)
+
+## Meso 3 (RAGionamento) — maintenance block, no PRs by design
+
+- Fluidity meso: hangboard deliberately kept to **maintenance, fingers fresh for movement**. No max-hang/AMRAP progression attempted.
+- W1 Mon: **skipped**. W2 Mon: done (see AMRAP note below). W3/W4 Mon: done at **+15 kg** two-hand 20 mm semiarcuata + svase, RPE 7-7.5 (light maintenance, on target).
+- **W5 travel session** (BW only, no added load): used a **2 cm travel edge board ≈ home 20 mm**. Main block 10-12 s two-hand + open svase, RPE 7.5; repeaters 7:3 as optional finisher. Good BW travel template — record for future trips.
+- **AMRAP @ +25 kg, Meso 3 W2: 6 s** — but logged "caldo e zero voglia" (heat + no motivation). **Treat as noise, NOT a strength decline**: it was a maintenance block in heat, not a rested test. Clean references below still stand.
 
 ## Current working loads (RPE 8-8.5, Meso 2 W2-W3, 7 s static max hang)
 

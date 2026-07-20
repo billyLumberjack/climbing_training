@@ -1,6 +1,14 @@
 # Physical training progressions
 
-Last updated from: `sessions/2026_maggio_giugno_VIBETRAINING.xlsx - POTENZIAMENTO (1).csv` (Meso 2)
+Last updated from: `current/2026_inizio_estate_RAGionamento.csv` (Meso 3 RAGionamento, incl. W5 travel)
+
+## Meso 3 (RAGionamento) — maintenance + mobility bias, no strength target
+
+- Fluidity meso: strength dropped to **maintenance only** (no load progression); focus shifted to **hip/ankle mobility** (fluidity determinant).
+- **Mobility added to library**: Cossack squat (hip/adductor, done W4 RPE7.5), ankle dorsiflexion rockback, 90/90 hip IR, Seated Bear + Rockback. Keep these — cheap, directly tied to drop-knee/heel-hook/high-step quality.
+- **Adherence**: Session B mostly done (RPE 6-6.5, on target). **Antagonist mini-block (Mon post-HB) done only W3** — skipped W2 and W4. Same fragility as Meso 2 Session A: the "extra" block is first to drop. Wall slides chronically unlogged.
+- **W5 travel template (BW + pull-up bar only)** — worth reusing: pull-ups alternating grip **3s eccentric (intensity via tempo, not load)**, diamond push-ups, hollow body, L-sit tuck hands-on-floor, wall slides + scapular CARs, self-resisted wrist extension. Done at RPE 7.5.
+- **+9 kg weighted pull-up PR still deferred** (no strength peak this meso); resume from +8 kg working load when a peaking meso allows.
 
 ## Current working loads (Meso 2 W2 clean working sets, RPE 7.5-8)
 
