@@ -3,19 +3,20 @@
 Last updated from: `current/2026_inizio_estate_RAGionamento.csv` (Meso 3 RAGionamento, Jun-Jul 2026, incl. W5 travel).
 
 ## Current ongoing project
-- Outdoor 7a+ red-point. Status: **still open, deferred** — Meso 3 pivoted to a fluidity block (heat killed weekend rope), zero serious attempts logged. Last real attempt remains Meso 2 W4 Dom (2026-06-14): reached last move, no send.
-- Note: heat/logistics knocked out **every** Meso 3 weekend outdoor session — the route never got a fair window. Redpoint carries to the next cooler meso.
+- **Autumn 2026 goal (set 2026-07-20, Meso 4 intake): outdoor lead ON-SIGHT 7a+.** Replaces the 7a+ redpoint as the driver — athlete reports the redpoint level is already at 7b (see bands below), so the gap to close is on-sight, not redpoint.
+- Legacy 7a+ redpoint project: last real attempt Meso 2 W4 Dom (2026-06-14), reached last move. No longer the target; can be sent opportunistically when cool.
 
 ## Self-diagnosis
 - Original (Meso 2): "poco fluido sul grado limite" — flow breaks down at limit; PE reserve borderline.
 - **Update (Meso 3): improving.** Two unscripted signals: a 7c on slab/vertical "felt better than expected" (W3 Dom), and a **7a boulder sent while travelling** (W5 Gio, RPE8) off spontaneous blocked practice. Fluidity work transferred; the bottleneck is looking less like skill and more like getting fair conditions on the route.
 
-## Comfortable grade bands (updated Meso 3)
-- Flash / onsight outdoor: ~6a-6b+.
-- **Boulder outdoor: 7a SENT (W5 Gio, RPE8)** via repeated-boulder blocked practice on 6b → 7a. 6c accessible.
-- Slab / vertical: a **7c felt accessible** (W3 Dom) — moved well above limit on low-steepness rock.
+## Comfortable grade bands (athlete self-report 2026-07-20, Meso 4 intake — supersedes the more conservative Meso 3 log-derived bands)
+- **On-sight outdoor lead: 6c** (best). Flash/onsight comfort ~6a-6b+.
+- **Redpoint outdoor lead: 7b**, plus an "easy" 7c (slab/vertical — consistent with the Meso 3 W3 Dom signal).
+- **Boulder outdoor: 7a+** (best); 7a sent Meso 3 W5 via blocked practice, 6c accessible.
 - Sostenuta lavorata lead: 6b/6c.
 - Mileage / working: 6c+/7a.
+- Gap analysis for autumn goal: on-sight (6c) sits ~2 grades below redpoint (7b) — the on-sight 7a+ target is about closing that gap (reading, repertoire, pump management), not raw strength.
 
 ## PE sostenuta TUT progression
 - Meso 2 W2: 90-120 s TUT, peaked at 6c/7a lead.
