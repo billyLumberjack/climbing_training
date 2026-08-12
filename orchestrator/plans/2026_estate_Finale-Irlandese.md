@@ -37,6 +37,18 @@ Holiday weeks are a **menu, zero obligations**: nothing there counts as "missed"
 - **W5 (integration + mini-taper):** Reduced volume, held intensity. Climbing shifts to on-sight simulation (never-tried routes/problems ground-up, pre-climb reading ritual, mid-route reading at rests). The meso hands off a rested, movement-rich athlete to the autumn on-sight meso rather than peaking here — the peak belongs to autumn.
 - **RPE discipline (recurring Meso 3 lesson):** prescribed RPE is a target, not a floor. Overshooting mileage/skill work inhibits exactly the acquisition this meso is for.
 
+## 5. Execution log (actual vs planned)
+
+| Settimana | Pianificato | Effettivo |
+|---|---|---|
+| **Holiday H1** | 0–2 sessioni opzionali (menu, zero obblighi) | **0 sessioni** — deload completo |
+| **Holiday H2** | 0–2 sessioni opzionali (menu, zero obblighi) | **0 sessioni** — deload completo |
+| **W2 (rientro)** | Hangboard mar 11 o ven 14 · Climbing mer 12 + weekend · Physical ven 14 | Hangboard **mar 11 ✓** + Climbing **mar 11 ✓** (stesso giorno) · **Mer 12 = riposo** · Ven 14 physical (in programma) · Weekend (in programma) |
+
+Note: deload completo in vacanza → rientro conservativo già previsto dal piano (carichi –15%, RPE cap 7). Hangboard e climbing nello stesso giorno mar 11 è accettabile ai carichi di re-entry. Nessuna modifica al programma W3+.
+
+---
+
 ## 4. Phase 2 pointers (for sub-agents, when requested)
 
 - Mesocycle name for all files: **`2026_estate_Finale-Irlandese`** → `hangboard/current/2026_estate_Finale-Irlandese.csv`, `physical/current/2026_estate_Finale-Irlandese.csv`, `climbing/current/2026_estate_Finale-Irlandese.csv`.
