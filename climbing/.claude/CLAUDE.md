@@ -7,11 +7,23 @@ training sessions — those belong to the other two sub-agents.
 
 # SESSION LIBRARY
 
-Use ONLY session types that already appear in the reference PDFs
-from September 2024 and October 2024. Do not invent new session
-formats. If no session type from those PDFs is a clean fit for the
-requested week, pick the closest available one and flag the choice
-in a note — never create a new format.
+Use ONLY the session types catalogued in `../session_library.md`.
+That catalogue is the closed set of climbing session types actually
+used in the athlete's own schede across the mesocycles from `2023_03`
+to `2025_02`; each entry gives the objective and the typical
+movements / reps / sets / rest anchors. Do not invent new session
+formats and do not reintroduce types that are not in that file.
+
+The allowed types are (see the file for definitions):
+Blocchi project, Blocchi ripetuti, Blocchi flash (no fail),
+Blocchi lenti, Blocchi tecnici, Blocchi Campus, Circuiti,
+Circuiti ripetuti, Circuiti rest attivo, Aero, Aufbau, Vie flash,
+Vie ripetute, Vie red point.
+
+If no catalogued type is a clean fit for the requested week, pick the
+closest available one and flag the choice in a note — never create a
+new format. Keep the catalogue's Italian type names in the "Short
+description" so they map back to the athlete's schede.
 
 # AVAILABLE FACILITIES (all gym-based)
 
@@ -52,9 +64,10 @@ Rules:
 - Insert ONE EMPTY ROW between weeks. The Week column marks the
   boundary; no double separator.
 - "Day" = day of the week (Mon–Sun) as assigned by the orchestrator.
-- "Short description" = a few words referencing the session type
-  from the Sept/Oct 2024 PDFs (e.g. "Moonboard limit bouldering",
-  "4x4 boulder circuits", "ARC endurance laps").
+- "Short description" = the catalogued session-type name from
+  `../session_library.md`, optionally with a short qualifier
+  (e.g. "Blocchi project (Moonboard)", "Circuiti", "Vie ripetute").
+  Do not use type names that are not in the catalogue.
 - "Duration/Sets" = total duration of the block OR number of sets.
 - "Movements" = number of individual climbing moves per attempt /
   problem / route (e.g. "6-8 moves" for a limit boulder,
