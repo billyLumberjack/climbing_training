@@ -43,9 +43,11 @@ Holiday weeks are a **menu, zero obligations**: nothing there counts as "missed"
 |---|---|---|
 | **Holiday H1** | 0–2 sessioni opzionali (menu, zero obblighi) | **0 sessioni** — deload completo |
 | **Holiday H2** | 0–2 sessioni opzionali (menu, zero obblighi) | **0 sessioni** — deload completo |
-| **W2 (rientro)** | Hangboard mar 11 o ven 14 · Climbing mer 12 + weekend · Physical ven 14 | Hangboard **mar 11 ✓** + Climbing **mar 11 ✓** (stesso giorno) · **Mer 12 = riposo** · Ven 14 physical (in programma) · Weekend (in programma) |
+| **W2 (rientro)** | Hangboard mar 11 o ven 14 · Climbing mer 12 + weekend · Physical ven 14 | Hangboard **mar 11 ✓** + Climbing **mar 11 ✓** (stesso giorno) · **Mer 12 = riposo** · **Gio 13 sera = punto attuale** (nessun climbing previsto oggi) · Ven 14 physical + hangboard (in programma) · Weekend menu (in programma) |
 
-Note: deload completo in vacanza → rientro conservativo già previsto dal piano (carichi –15%, RPE cap 7). Hangboard e climbing nello stesso giorno mar 11 è accettabile ai carichi di re-entry. Nessuna modifica al programma W3+.
+Note: deload completo in vacanza → rientro conservativo già previsto dal piano (carichi –15%, RPE cap 7). Hangboard e climbing nello stesso giorno mar 11 è accettabile ai carichi di re-entry. Nessuna modifica alla struttura W3+.
+
+**Aggiornamento (Gio 13 sera, W2): sessioni climbing W2-weekend → W5 riscritte per usare SOLO le tipologie di `climbing/session_library.md`** (set chiuso ricavato dalle schede 2023_03→2025_02), intento e allineamento all'obiettivo on-sight 7a+ invariati. Mapping: repertorio/lettura → **Blocchi tecnici** + **Blocchi flash** (mileage on-sight su blocco); potenza di mantenimento → **Blocchi Campus**; filone AE / gestione pompaggio → **Circuiti** (blocco) e **Vie ripetute** (rope gym, sostenuta/TUT); on-sight sim su vie → **Vie flash**. Rimosse le etichette non a catalogo (downclimbing, 4x4, "intervalli verticali", "repertorio" generico). Nessun cambio a volumi, fasi o RPE cap.
 
 ---
 
