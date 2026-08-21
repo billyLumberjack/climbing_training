@@ -14,7 +14,7 @@ Last updated from: `current/2026_inizio_estate_RAGionamento.csv` (Meso 3 RAGiona
 
 - **Weighted pull-ups**: 4x6 @ +8 kg, RPE8, 3s eccentric, 2min30s rest
 - **DB bench press**: 3x10 @ 20 kg/side, RPE7.5, tempo 3-0-1
-- **Lock-off hold @ 90°**: 3 x 12s per arm @ 26 kg (loading pin), RPE7.5
+- **Lock-off hold @ 90° (single-arm, pulley-ASSISTED)**: 3 x 12s per arm @ 26 kg pulley assist / DELOAD, RPE7.5. The 26 kg is COUNTERWEIGHT (pulley system deloading bodyweight), **NOT added load** — the athlete cannot perform a single-arm lock-off at bodyweight. More kg = more help = easier. **Progress by reducing assistance or adding TUT, never by adding weight.** (Past schemes that wrote "loading pin" for this exercise, incl. VIBETRAINING mag-giu 2026, are the same refuso — read them as pulley assist.)
 - **DB hammer curl alternating**: 3x10 @ 8 kg/side, RPE7.5
 - **DB overhead press seated**: 3x10 @ 10 kg/side, RPE7
 - **Dragon flag tuck**: 3x7, RPE7.5, 3s eccentric (tuck variant only)
