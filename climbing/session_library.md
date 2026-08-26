@@ -62,11 +62,25 @@ slabs/coordination problems.
 - Rest: `Max 3'` (short, skill practice) or `Almeno 6'` when tension is high.
 
 ### Blocchi Campus — "campus boulders"
-Campus-style power blocks. Explosive, few moves, full recovery.
-Do not accelerate the movements too much or the stimulus is lost.
-- Movements: 4–12. Sets: 2–5.
+Blocks of the prescribed number of moves done **senza l'utilizzo dei
+piedi** (feet OFF), linking the moves so the momentum of the previous
+one carries into the next. Explosive, few moves, full recovery.
+Do not accelerate the movements too much or the stimulus is lost
+("se acceleri troppo i movimenti scendi").
+- Movements: 4–12. Sets: 2–5 — "sets" IS the total block count; the
+  schede have no reps-per-set column for this type, so never multiply
+  sets by a second per-set figure.
 - Rest: `Fino a 4'–6'`.
 - Contact strength / power.
+- **Caveat — read before prescribing.** Used ONCE in the whole
+  2023_03→2025_02 record (`2023_10_Caldissimo`, as its own standalone
+  session "Seduta 4"), never repeated, and no RPE was ever logged for
+  it — do not invent one. Feet-off means intensity cannot be regulated
+  once the move has started, so on a steep board with small holds this
+  is the highest peak-load type in the catalogue. It is NOT a
+  maintenance dose and NOT a mid-session add-on, and it does not belong
+  in a week that already carries hangboard load. For feet-on power
+  work use Blocchi project and flag the substitution.
 
 ---
 
