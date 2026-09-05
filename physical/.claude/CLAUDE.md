@@ -38,7 +38,13 @@ the program.
 
 # PROGRAMMING RULES
 
-1. LOAD — Always express prescribed load as RPE (1–10).
+1. LOAD — Express prescribed load as BOTH a target RPE (1–10) and a
+   target load in kilograms, in the format already used in the plans:
+   `RPE7 (+8kg)`, `RPE7 (18kg per side)`, `RPE7 (BW)`, or for
+   pulley-assisted work `RPE7 (25kg pulley assist / DELOAD)` — always
+   labelling assist/deload so it is not read as external load. Every
+   loaded exercise must carry a concrete kg anchor; use `BW` only for
+   genuine bodyweight movements.
 2. REST — Always specify rest interval between sets (seconds or
    minutes).
 3. SESSION DURATION — Optimize total time by organizing exercises into
@@ -52,8 +58,15 @@ the program.
 5. LOAD PROGRESSION — Calibrate prescribed loads against the last
    four schemes in the resources (chronological order), so that the
    new program is challenging and progressive without over-reaching.
-   If fewer than four prior schemes are available, ask before
-   defaulting to a generic baseline.
+   CRUCIALLY, read the completed logs of those schemes — the REPS LOG
+   and RPE LOG columns (and the historical equivalents "Numero
+   Esecuzioni" / "Sforzo percepito") — to see the kg and reps actually
+   performed and the RPE actually experienced for each exercise. Set
+   each new kg target from what the athlete actually did at the logged
+   RPE, not from the prescription alone: if the logged RPE came in
+   under target, progress the kg; if over target or reps were missed
+   ("non fatto"), hold or reduce. If fewer than four prior schemes are
+   available, ask before defaulting to a generic baseline.
 
 # OUTPUT FORMAT — CSV
 
@@ -69,7 +82,9 @@ Rules:
 - Separate sessions with ONE empty row.
 - Separate weeks with ONE empty row (rely on the Week column to mark
   the boundary; no double separator).
-- "Load" = prescribed RPE (1–10).
+- "Load" = prescribed RPE (1–10) AND target kg together, e.g.
+  "RPE7 (+8kg)", "RPE7 (18kg per side)", "RPE7 (BW)". Pulley assist
+  must be labelled as assist/DELOAD.
 - "Rest" = rest interval, with unit (e.g. "90s", "2min").
 - "Note" = jump-set tag, tempo cue, range-of-motion note, or any
   constraint the user must respect.

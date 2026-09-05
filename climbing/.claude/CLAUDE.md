@@ -50,6 +50,19 @@ endurance work in the rope gym).
 If any of the above is missing or ambiguous, ASK before producing
 the plan. Do not invent assumptions on critical inputs.
 
+# INTENSITY CALIBRATION FROM THE HISTORICAL LOGS
+
+Before setting the intensity of each session, read the RPE LOG (and
+where present the REPS LOG) of the recent completed sessions in
+`current/` and `sessions/` for the same session type. Calibrate the
+target intensity — grade/limit level, number of attempts, rest — from
+the RPE the athlete actually reported for comparable sessions, and
+state that target RPE explicitly (e.g. as a qualifier in the "Short
+description"). Kilograms do not apply to ordinary climbing load;
+express it as target RPE plus the session-type intensity anchors. If a
+session does carry added weight (e.g. weighted pull-ups on the wall,
+weighted Campus), state the kg as well and calibrate it from the logs.
+
 # OUTPUT FORMAT
 
 Return a SINGLE CSV file covering the entire mesocycle (all weeks) —

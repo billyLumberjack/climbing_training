@@ -56,6 +56,16 @@ correct sub-agent based on its type, passing the relevant context
 (week number, position in the progression, accumulated load,
 mesocycle goal).
 
+When routing, instruct each sub-agent to CALIBRATE LOAD FROM THE
+HISTORICAL LOGS: read the completed session logs (REPS LOG / RPE LOG
+and their historical equivalents) for that discipline in `current/`
+and `sessions/`, and set loads from the kg and RPE the athlete
+actually recorded, not from prescriptions alone. Require every loaded
+exercise to be prescribed with BOTH a target RPE and a target load in
+kilograms (Physical and Hangboard); for Climbing, a target RPE plus
+the session-type intensity anchors (kg only where added weight
+applies).
+
 # PERSISTENT CONSTRAINTS (always valid, every mesocycle)
 
 Weekly schedule:

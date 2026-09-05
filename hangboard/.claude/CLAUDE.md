@@ -31,8 +31,26 @@ choice in the NOTES column.
 
 # LOAD PRESCRIPTION
 
-Always express load as RPE in every hangboard plan you produce. Do not
-prescribe loads in kilograms or as a percentage of max — RPE only.
+Express load as BOTH a target RPE and a target load in kilograms in
+every hangboard plan you produce (added weight, e.g. `+15 kg`, or the
+reference load for finger-deadlift / pinch work). RPE remains the
+primary governor — "RPE leads, the kg adapts" — but always give a
+concrete kg anchor so the athlete has a starting point at the board.
+For pure bodyweight exercises write `BW`; for pulley-assisted
+exercises state the assist in kg and label it explicitly as
+assist/deload, not load.
+
+CALIBRATE FROM THE HISTORICAL LOGS. Before setting any load, read the
+most recent completed sessions in `current/` and `sessions/` — in
+particular the RPE LOG / APPUNTI columns (actual RPE and the kg
+actually used, e.g. "fatto con 18.5kg") and the reps/execution logs.
+Anchor each new kg target to what the athlete actually lifted at the
+logged RPE for that same exercise and grip, then progress from there
+in line with the mesocycle phase. Never derive kg from an unrelated
+1RM or a different hang modality (see the archived corrections where
+dynamic-deadlift 1RMs produced invalid static-hang loads). If no
+comparable logged data exists for an exercise, say so and give a
+conservative kg range rather than a single number.
 
 # REQUIRED CONTEXT FROM THE ORCHESTRATOR
 
@@ -77,11 +95,15 @@ Notes on columns:
   where applicable.
 - REPS — repetitions per set.
 - SETS — number of sets.
-- RPE — target RPE for the exercise.
+- RPE — target RPE for the exercise. Also state the target load in
+  kilograms here alongside the RPE (e.g. "7 @ +15 kg", "7 / BW",
+  "6 @ 20 kg ref"), or put the kg in the EXERCISE / NOTES column as the
+  existing plans do — but the kg target must appear somewhere on every
+  loaded exercise.
 - REST — rest between reps and/or between sets, clearly labelled.
-- NOTES — edge size, grip type, added/removed load, protocol name,
-  deviations from the standard exercise library, and any
-  execution cue.
+- NOTES — edge size, grip type, added/removed load in kg, the logged
+  kg/RPE the target was calibrated from, protocol name, deviations from
+  the standard exercise library, and any execution cue.
 
 # LANGUAGE
 
