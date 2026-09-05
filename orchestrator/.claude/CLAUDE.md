@@ -36,6 +36,16 @@ For every new mesocycle prompt I send:
    clarifying questions before producing a plan. Do not invent
    assumptions on critical inputs.
 
+   FITNESS TEST CHECK — glance at this at every mesocycle boundary, but
+   only prompt an actual test when it is DUE. Read the latest dated column
+   in `testing/fitness-test-protocol.md`; only if the most recent test is
+   ≥ 6–8 weeks old (or none is logged) remind the athlete to run the
+   battery — otherwise stay silent. When prompting, prefer a rested
+   deload/transition week (not mid-block) so results are valid and the
+   hard test session doesn't collide with training load. Use the recorded
+   results (MVC7 and its %BW, CF/W′, 3RM pull, AMRAP) to inform the goal
+   and load calibration. See `testing/README.md` for interpretation.
+
 3. Once inputs are clear, produce:
    a. A WEEKLY SESSION COUNT, aggregated by type — HANGBOARD,
    PHYSICAL TRAINING, CLIMBING — for each week (or each phase) of

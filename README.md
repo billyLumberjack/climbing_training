@@ -27,12 +27,20 @@ climbing_training/
 │   ├── sessions/                  ← Historical mesocycle CSVs (past training)
 │   └── progressions.md            ← Data: lift PRs, progression notes
 │
-└── climbing/                      ← PHASE 2: Climbing sessions
-    ├── .claude/CLAUDE.md          ← Climbing agent role
-    ├── current/                   ← Current mesocycle CSVs (active training)
-    ├── sessions/                  ← Historical mesocycle CSVs (past training)
-    └── progressions.md            ← Data: sends, projects, technique notes
+├── climbing/                      ← PHASE 2: Climbing sessions
+│   ├── .claude/CLAUDE.md          ← Climbing agent role
+│   ├── current/                   ← Current mesocycle CSVs (active training)
+│   ├── sessions/                  ← Historical mesocycle CSVs (past training)
+│   └── progressions.md            ← Data: sends, projects, technique notes
+│
+└── testing/                       ← Periodic fitness test battery (monitoring)
+    ├── fitness-test-protocol.md   ← Protocol + fill-in results table
+    └── README.md                  ← Agent-facing docs for this folder
 ```
+
+Run the `testing/` battery every 6–8 weeks (typically at a mesocycle boundary) to
+monitor adaptation. The orchestrator checks whether a test is due when planning each
+new mesocycle.
 
 ## How It Works
 
