@@ -15,8 +15,9 @@ training performed under `hangboard/`, `physical/`, and `climbing/`.
 | `fitness-test-protocol.md` | The protocol itself: ground rules, test descriptions, and a fill-in results table. This is the source of truth for **how** to run the tests and **where** to record them. |
 | `README.md` | This file — orientation for agents. |
 
-The original coach document (`Test massimali 2.1 - 10.2.2025.pdf`) lives in the repo root
-as the historical source. The protocol here supersedes it.
+The coach documents (`Test massimali 2.2.pdf`, latest, plus the earlier
+`Test massimali 2.1 - 10.2.2025.pdf`) live in the repo root as the source. The protocol here
+tracks the **latest version (2.2)** and supersedes it with the refinements below.
 
 ## Origin & rationale
 
@@ -34,6 +35,9 @@ pull-up, confirmed MVC7, defined recovery times) and **fixes** the weak parts:
    static max hangs). Requires a load cell / Tindeq.
 4. **Unilateral MVC7 added** to catch left/right asymmetry (injury-prevention signal).
 5. **Fixed cadence** (every 6–8 weeks / mesocycle boundary), rested, same time of day.
+6. **Finger deadlift reclassified** (from coach v2.2): "stacco da terra dita" is a formal
+   finger-strength test in active semi-crimp on the 20 mm edge — grouped with the finger
+   metrics and retested every round, not treated as a general barbell lift.
 
 Scientific basis is in `/bibliografia` (Giles 2021 Critical Force, Draper 2021 IRCRA battery,
 Faggian 2024 determinants review) and the LightRAG knowledge base (see root `.claude/CLAUDE.md`).

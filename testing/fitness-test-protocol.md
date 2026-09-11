@@ -1,8 +1,12 @@
 # Periodic Fitness Test Battery — Climbing
 
-> Adapted from the SZ Performance "Test massimali 2.1" battery (coach protocol, 10.2.2025),
+> Adapted from the SZ Performance "Test massimali **2.2**" battery (latest coach protocol),
 > refined against current climbing science (Giles 2021 finger-flexor Critical Force,
 > Draper 2021 IRCRA test battery, Faggian 2024 determinants review — all in `/bibliografia`).
+> **v2.2 change vs v2.1:** the finger deadlift is now a *formal* test — "Massimale stacco da
+> terra dita (1RM)" in active semi-crimp on the 20 mm edge — not the handwritten add-on it was
+> in v2.1. See test #8 below, which is updated accordingly (it is a finger-strength test, not a
+> general-strength anchor).
 >
 > **Purpose:** track physical fitness over time with reliable, comparable numbers.
 > Retested on a fixed cadence, this battery shows whether training is working and flags
@@ -90,8 +94,21 @@ Record reps/time-to-exhaustion at each load.
 > CF test (as in the historical logs) yields nothing. If a single session can't fit all three with
 > real recovery, split across days rather than skip the 45% anchor.
 
-### 8. Deadlift 1RM *(kept — optional general-strength anchor)*
-Standard barbell 1RM. Not climbing-specific; retest less often (e.g. every 2nd battery).
+### 8. Finger deadlift 1RM — max finger strength, pulling vector *(v2.2: now a formal test)*
+Lift the **heaviest possible load off the ground while holding an active semi-crimp** (half-crimp)
+on the 20 mm edge. This is a climbing-specific **finger** test — a concentric pull-from-below
+that complements the isometric MVC7 hang; **retest it every round**, like MVC7.
+- **Warm-up:** start with 8–10 rep sets to warm the fingers, dropping reps as load rises. Warm-up
+  sets must never feel fatiguing — always keep a wide margin on the load moved.
+- **Approach:** near the test load, add weight more slowly with **doubles**; once a load feels
+  ~**RPE 7**, switch to **singles** until you find the max.
+- **Technique (non-negotiable):** the fingers must stay active — the angle between the 1st and
+  2nd phalanx must **not change even a millimetre** during the lift. **Always film** the finger
+  position; a rep where the crimp opens does not count.
+- Record the **max load (kg)** and its **relative value (%BW)**.
+> *Reclassified from v2.1: I had wrongly logged this as a general barbell deadlift. v2.2 makes
+> clear it is a finger test in strict semi-crimp — so it lives with the finger metrics, not as an
+> afterthought.*
 
 ---
 
@@ -113,6 +130,8 @@ Units as shown; `—` = not done / not applicable that round.
 | MVC7 — Total Load CC (kg) | 93 | 94.3 | 94.5 | |
 | MVC7 — relative (%BW) | 143% | 147% | 150% | |
 | MVC7 confirmed? (Y/N) | — | — | — | |
+| **Finger deadlift 1RM** (stacco dita, 20 mm, semi-crimp) (kg) | — | — | 46.3 | |
+| Finger deadlift — relative (%BW) | — | — | 73% | |
 | **RFD** peak (N/s or device unit) | — | — | — | |
 | **Unilateral MVC7 L** (kg CC) | — | — | — | |
 | **Unilateral MVC7 R** (kg CC) | — | — | — | |
@@ -122,7 +141,6 @@ Units as shown; `—` = not done / not applicable that round.
 | CC80% load / time-to-exhaustion *[fallback]* | 74.4 / 2′ (12 rep) | 75.4 / 1′40″ (10 rep) | 75.6 / (10 rep) | |
 | CC60% load / time-to-exhaustion *[fallback]* | 55.8 / 5′30″ (33 rep) | 56.6 / 3′40″ (22 rep) | 56.7 / (23 rep) | |
 | CC45% load / time (cap 10′) *[fallback]* | 41.85 / not done | not done | not done | |
-| **Deadlift 1RM** (kg) | — | — | 46.3 | |
 | Notes / video links | | | | |
 
 Trends across Test 1→3: **MVC7 rising steadily** (28 → 31.5 kg; 143% → 150% BW — good), **3RM
