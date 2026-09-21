@@ -30,13 +30,15 @@ Next test due ~mid-to-late Nov (6–8 wk), after this block. Keep the clothed+sh
 | Week | Dates | Phase | HANGBOARD | PHYSICAL | CLIMBING |
 |---|---|---|---|---|---|
 | **W1** | Sep 14–20 | Re-entry + strength/power re-build | 2 | 1 | 2 |
-| **W2** | Sep 21–27 | **Climbing trip** — on-sight mileage (structured deload) | 1 | 1 (light) | 3 (trip Fri–Sun) |
+| **W2** | Sep 21–27 | **Climbing trip Sat–Sun** — on-sight mileage (structured deload) | 1 | 1 (Fri, light) | 2 (trip Sat–Sun) |
 | **W3** | Sep 28–Oct 4 | Post-trip recovery → strength/power-to-AE bridge | 2 | 1 | 2–3 |
 | **W4** | Oct 5–11 | AE / CF core build (volume peak) | 2 | 1 | 3 |
 | **W5** | Oct 12–18 | AE / CF + on-sight integration | 2 | 1 | 3 |
 | **W6** | Oct 19–25 | Taper + on-sight performance window | 1 | 1 (light) | 2 |
 
 This weekend (Sep 13–14) is an optional light bridge touch toward the block, not a formal W1 session.
+
+**In-week adjustment (Mon 2026-09-21, W2):** Friday 25 Sep flips from trip climbing day 1 → a **home training day** (athlete home until evening, departs Fri night; can train, not climb). Trip is now **Sat–Sun only (2 outdoor days)**. Friday gets the week's single light physical session (mobility/antagonist + light core/push, RPE ≤6) — deliberately non-finger/non-heavy-pull so fingers and skin stay fresh for Sat–Sun outdoor climbing. Net effect on the on-sight goal: one fewer on-sight mileage day (−1), a minor loss; W3+ structure unchanged.
 
 ## 2. Placement preferences
 
