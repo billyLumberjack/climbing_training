@@ -30,7 +30,7 @@ Next test due ~mid-to-late Nov (6–8 wk), after this block. Keep the clothed+sh
 | Week | Dates | Phase | HANGBOARD | PHYSICAL | CLIMBING |
 |---|---|---|---|---|---|
 | **W1** | Sep 14–20 | Re-entry + strength/power re-build | 2 | 1 | 2 |
-| **W2** | Sep 21–27 | **Climbing trip Sat–Sun** — on-sight mileage (structured deload) | 1 | 1 (Fri, light) | 2 (trip Sat–Sun) |
+| **W2** | Sep 21–27 | **Boulder trip Sat–Sun** — repertoire + blocked-practice power (+ optional lead) | 1 | 1 (Fri, light) | 2 (trip Sat–Sun) |
 | **W3** | Sep 28–Oct 4 | Post-trip recovery → strength/power-to-AE bridge | 2 | 1 | 2–3 |
 | **W4** | Oct 5–11 | AE / CF core build (volume peak) | 2 | 1 | 3 |
 | **W5** | Oct 12–18 | AE / CF + on-sight integration | 2 | 1 | 3 |
@@ -38,7 +38,9 @@ Next test due ~mid-to-late Nov (6–8 wk), after this block. Keep the clothed+sh
 
 This weekend (Sep 13–14) is an optional light bridge touch toward the block, not a formal W1 session.
 
-**In-week adjustment (Mon 2026-09-21, W2):** Friday 25 Sep flips from trip climbing day 1 → a **home training day** (athlete home until evening, departs Fri night; can train, not climb). Trip is now **Sat–Sun only (2 outdoor days)**. Friday gets the week's single light physical session (mobility/antagonist + light core/push, RPE ≤6) — deliberately non-finger/non-heavy-pull so fingers and skin stay fresh for Sat–Sun outdoor climbing. Net effect on the on-sight goal: one fewer on-sight mileage day (−1), a minor loss; W3+ structure unchanged.
+**In-week adjustment (Mon 2026-09-21, W2):** Friday 25 Sep flips from trip climbing day 1 → a **home training day** (athlete home until evening, departs Fri night; can train, not climb). Trip is now **Sat–Sun only (2 outdoor days)**. Friday gets the week's single light physical session (mobility/antagonist + light core/push, RPE ≤6) — deliberately non-finger/non-heavy-pull so fingers and skin stay fresh for Sat–Sun outdoor climbing.
+
+The trip is **mainly outdoor bouldering** (some lead if the sector allows), so the Sat–Sun sessions are boulder-based: **Blocchi flash** (varied problems, on-sight reading from the ground = the on-sight/repertoire transfer) as the backbone + **Blocchi project** (1–3 limit lines, blocked practice → the athlete's proven send pattern and the block's early power stimulus), with an **optional Vie flash lead touch** on Sat if the sector has routes. This maps cleanly onto the 3-2-1 repertoire+power phase — the lead on-sight mileage the goal specifically needs concentrates in W3–W6 (unchanged). Note: bouldering is **more finger/skin-intensive** than lead mileage, so Monday's light hangboard and Friday's non-finger session are the more warranted, and the weekend is less of a deload than originally framed. Net effect on the on-sight goal: W2 reallocated from lead-mileage to boulder repertoire/power — no loss, just resequenced.
 
 ## 2. Placement preferences
 
