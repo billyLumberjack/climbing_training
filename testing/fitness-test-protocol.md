@@ -129,34 +129,35 @@ that complements the isometric MVC7 hang; **retest it every round**, like MVC7.
 
 ## Fill-in table
 
-Test 1–3 are the prior coach-battery rounds, carried across for continuity. **Test 4 is the
-upcoming round** — fill its blank cells when you run it. Add a Test 5 column for the next one.
-Units as shown; `—` = not done / not applicable that round.
+Test 1–4 are prior completed rounds. **Test 5 (2026-10-27) is done but FLAGGED — see the Test 5
+read below;** it was run under-recovered (only 2 rest days off a performance peak, forearms sore days before),
+so treat it as provisional, not a clean baseline. Add a **Test 6** column at the next boundary
+(~early Feb). Units as shown; `—` = not done / not applicable that round.
 
-| Metric                                                        | Test 1                | Test 2                | Test 3          | Test 4                            |
-| ------------------------------------------------------------- | --------------------- | --------------------- | --------------- | --------------------------------- |
-| **Date**                                                      | 16.11.2023            | 17.11.2024            | 7.2.2025        | **2026-09-11 (planned)**          |
-| Mesocycle / context                                           | —                     | —                     | —               | Start of autumn on-sight 7a+ meso |
-| Rested? (Y/N)                                                 | —                     | —                     | —               | yes                               |
-| **Bodyweight** (kg)                                           | 65                    | 64                    | 63              | 65 vestito con scarpe             |
-| **3RM pull-up** — overload (kg)                               | 29                    | 22.5                  | 24.5            | 20kg                              |
-| **AMRAP pull-ups** (reps)                                     | 15                    | 12                    | 15              | 13                                |
-| **MVC7** — overload ± (kg)                                    | +28                   | +30.3                 | +31.5           | +30.5                             |
-| MVC7 — Total Load CC (kg)                                     | 93                    | 94.3                  | 94.5            | 95.5                              |
-| MVC7 — relative (%BW)                                         | 143%                  | 147%                  | 150%            | 147%                              |
-| MVC7 confirmed? (Y/N)                                         | —                     | —                     | —               | yes                               |
-| **Finger deadlift 1RM** (stacco dita, 20 mm, semi-crimp) (kg) | —                     | —                     | 46.3            | 48kg                              |
-| Finger deadlift — relative (%BW)                              | —                     | —                     | 73%             | 73%                               |
-| **RFD** peak (N/s or device unit)                             | —                     | —                     | —               | 2506 N/s sx ; 3284 N/s dx         |
-| **Unilateral MVC7 L** (kg CC)                                 | —                     | —                     | —               | -                                 |
-| **Unilateral MVC7 R** (kg CC)                                 | —                     | —                     | —               | -                                 |
-| L/R asymmetry (%)                                             | —                     | —                     | —               | -                                 |
-| **CF** (kg) _[all-out]_                                       | —                     | —                     | —               | 18.67kg sx ; 15.85 dx             |
-| **W′** (kg·s, /kg BW) _[all-out]_                             | —                     | —                     | —               | 762.6 kg\*s sx ; 1256.5kg dx      |
-| CC80% load / time-to-exhaustion _[fallback]_                  | 74.4 / 2′ (12 rep)    | 75.4 / 1′40″ (10 rep) | 75.6 / (10 rep) | -                                 |
-| CC60% load / time-to-exhaustion _[fallback]_                  | 55.8 / 5′30″ (33 rep) | 56.6 / 3′40″ (22 rep) | 56.7 / (23 rep) | -                                 |
-| CC45% load / time (cap 10′) _[fallback]_                      | 41.85 / not done      | not done              | not done        | -                                 |
-| Notes / video links                                           |                       |                       |                 |                                   |
+| Metric                                                        | Test 1                | Test 2                | Test 3          | Test 4                            | Test 5 _(FLAGGED — see read)_                |
+| ------------------------------------------------------------- | --------------------- | --------------------- | --------------- | --------------------------------- | -------------------------------------------- |
+| **Date**                                                      | 16.11.2023            | 17.11.2024            | 7.2.2025        | **2026-09-11 (planned)**          | 2026-10-27 (Tue, afternoon)                  |
+| Mesocycle / context                                           | —                     | —                     | —               | Start of autumn on-sight 7a+ meso | Start winter strength block (late_autumn_raise); tested right after Meso-5 peak |
+| Rested? (Y/N)                                                 | —                     | —                     | —               | yes                               | **NO — only 2 rest days off the peak; forearms sore days prior; afternoon** |
+| **Bodyweight** (kg)                                           | 65                    | 64                    | 63              | 65 vestito con scarpe             | 64.5                                         |
+| **3RM pull-up** — overload (kg)                               | 29                    | 22.5                  | 24.5            | 20kg                              | 17.5                                         |
+| **AMRAP pull-ups** (reps)                                     | 15                    | 12                    | 15              | 13                                | 12                                           |
+| **MVC7** — overload ± (kg)                                    | +28                   | +30.3                 | +31.5           | +30.5                             | +26                                          |
+| MVC7 — Total Load CC (kg)                                     | 93                    | 94.3                  | 94.5            | 95.5                              | 90.5                                         |
+| MVC7 — relative (%BW)                                         | 143%                  | 147%                  | 150%            | 147%                              | 140%                                         |
+| MVC7 confirmed? (Y/N)                                         | —                     | —                     | —               | yes                               | ? (not noted)                                |
+| **Finger deadlift 1RM** (stacco dita, 20 mm, semi-crimp) (kg) | —                     | —                     | 46.3            | 48kg                              | 47 sx / 42.7 dx _(now per-hand)_             |
+| Finger deadlift — relative (%BW)                              | —                     | —                     | 73%             | 73%                               | 73% sx / 66% dx                              |
+| **RFD** peak (N/s or device unit)                             | —                     | —                     | —               | 2506 N/s sx ; 3284 N/s dx         | 1341 N/s sx ; 1521 N/s dx                    |
+| **Unilateral MVC7 L** (kg CC)                                 | —                     | —                     | —               | -                                 | -                                            |
+| **Unilateral MVC7 R** (kg CC)                                 | —                     | —                     | —               | -                                 | -                                            |
+| L/R asymmetry (%)                                             | —                     | —                     | —               | -                                 | -                                            |
+| **CF** (kg) _[all-out]_                                       | —                     | —                     | —               | 18.67kg sx ; 15.85 dx             | 13.02 sx (20.2%BW) ; 14.32 dx (22.2%BW)      |
+| **W′** (kg·s, /kg BW) _[all-out]_                             | —                     | —                     | —               | 762.6 kg\*s sx ; 1256.5kg dx      | 1354.7 kg\*s sx ; 972 kg\*s dx               |
+| CC80% load / time-to-exhaustion _[fallback]_                  | 74.4 / 2′ (12 rep)    | 75.4 / 1′40″ (10 rep) | 75.6 / (10 rep) | -                                 | -                                            |
+| CC60% load / time-to-exhaustion _[fallback]_                  | 55.8 / 5′30″ (33 rep) | 56.6 / 3′40″ (22 rep) | 56.7 / (23 rep) | -                                 | -                                            |
+| CC45% load / time (cap 10′) _[fallback]_                      | 41.85 / not done      | not done              | not done        | -                                 | -                                            |
+| Notes / video links                                           |                       |                       |                 |                                   | likely fatigue-suppressed — see Test 5 read  |
 
 Trends across Test 1→3: **MVC7 rising steadily** (28 → 31.5 kg; 143% → 150% BW — good), **3RM
 pull dropped then partly recovered** (29 → 22.5 → 24.5 kg — watch pulling strength), bodyweight
@@ -177,6 +178,43 @@ non-strength mesos — fingers resilient. (4) **3RM pull-up eroded to 20 kg** (l
 29→22.5→24.5→20) — not the on-sight limiter, but arrest it with a modest pull-rebuild thread.
 %BW figures use the 65 kg clothed+shoes denominator (true BW ~63 kg), so they're marginally
 conservative. Drives Meso 5 → `orchestrator/plans/2026_autunno_AVista.md`.
+
+**Test 5 read (2026-10-27) — READ WITH CAUTION: fatigue-suppressed, NOT a clean baseline.** Nearly every metric fell vs Test 4, but the *pattern* says "bad test state," not six
+weeks of detraining:
+
+1. **RFD collapsed ~50%** (L 2506→1341, R 3284→1521 N/s). A halving of rate-of-force in six weeks
+   is not physiologically plausible as true detraining — it is the textbook signature of
+   neuromuscular fatigue / incomplete recovery, and RFD is the most state- and warm-up-sensitive
+   number in the battery. This alone flags the session as sub-optimal.
+2. **Everything moved down together** (MVC7 95.5→90.5 kg / 147→140% BW; CF; RFD; 3RM pull;
+   right-hand deadlift). A uniform across-the-board decline is a **global STATE effect** (fatigue,
+   under-recovery, hydration, time of day, skin, tentative pulling on sore fingers), not
+   exercise-specific adaptation — real training changes rarely move every metric down in lockstep,
+   and MVC7 had held ~147–150% BW across the prior three rounds.
+3. **Context fits exactly:** tested only **2 rest days** off the Meso-5 performance peak (a hard
+   overhang session needs ~72–96 h to clear the flexors), forearm soreness reported days earlier,
+   in the **afternoon** — a circadian strength *peak*, so timing can't explain the drop; it points
+   to residual fatigue. The protocol's "rested" ground rule was not met.
+4. **CF L/R flip is a pacing artifact.** Left CF 18.67→13.02 **but** left W′ 762→1355; right CF
+   15.85→14.32 with right W′ 1256→972. CF↓ paired with W′↑ on the same hand is the classic result
+   of going out too hard early in the all-out test (lowers apparent CF, inflates W′) → the CF change
+   is confounded by execution/pacing and not directly comparable to Test 4. Identical pacing +
+   live-force feedback needed next time.
+5. **Bodyweight essentially flat** (65→64.5), so these are real force drops *at test time* — just
+   not durable ones.
+
+**Probably at least partly REAL:** 3RM pull-up continued its steady multi-round slide
+(29→22.5→24.5→20→**17.5**). Pull strength is far less fatigue-sensitive than finger RFD, so take it
+closer to face value — it reconfirms the pull-rebuild spine of the winter block. Finger-deadlift is
+now logged per-hand (47 sx / 42.7 dx) vs a single prior figure (48), so not cleanly comparable; the
+right-hand value is the lower one to watch.
+
+**Actions:** (a) do NOT treat Test 5 as a valid baseline, and do NOT calibrate W2+ loads down to it
+— W2 is a sub-max RPE-governed re-entry anyway, so anchor to Test-4 / autumn working loads and let
+RPE find the truth; (b) **re-run MVC7 + RFD + one CF trace after 3–5 genuinely rested, pain-free
+days** (same time of day, identical warm-up, even pacing on the CF) to get a clean winter-block
+baseline; (c) the winter strength block (`orchestrator/plans/2026_late_autumn_raise.md`) is the
+corrective for any genuine dip — training direction unchanged, if anything confirmed.
 
 ---
 
