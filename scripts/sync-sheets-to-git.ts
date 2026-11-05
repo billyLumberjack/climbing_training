@@ -44,8 +44,13 @@ const sheetConfigs: SheetConfig[] = [
     type: 'hangboard',
     csvPath: currentCsvPath('hangboard'),
     sheetName: 'Hangboard',
-    headers: ['WEEK', 'DAY', 'EXERCISE', 'TIME', 'REPS', 'SETS', 'RPE', 'REPS LOG', 'RPE LOG'],
-    loggingColumnIndices: [7, 8] // "REPS LOG", "RPE LOG" (last 2 cols)
+    headers: ['WEEK', 'DAY', 'EXERCISE', 'TIME', 'REPS', 'SETS', 'RPE', 'REST', 'NOTES'],
+    // Hangboard is PLAN-AUTHORITATIVE from the CSV: cols 7,8 are REST/NOTES (plan data),
+    // NOT user logs. Treating them as logging made pull overwrite plan text from the sheet
+    // (and the push preserve stale sheet text). Empty = push writes all cols from CSV,
+    // pull never changes the hangboard CSV. (Add dedicated REPS LOG/RPE LOG cols later to
+    // re-enable hangboard logging.)
+    loggingColumnIndices: []
   },
   {
     name: 'Climbing',
